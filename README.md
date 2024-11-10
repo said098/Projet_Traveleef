@@ -13,15 +13,6 @@ Traveleef est une application web qui utilise Docker Compose pour déployer un f
    git clone https://github.com/said098/Projet_Traveleef.git
 
 
-##Ajoutez vos variables d'environnement dans le fichier .env
-POSTGRES_USER=nom_utilisateur
-POSTGRES_DB=nom_bd
-
-
-## Ajoutez votre mot de passe dans fichier secrect.txt
-12345(par exemple mdp)
-
-
 ## Démarrer le projet avec Docker
 
 Une fois que tout est en place, pour démarrer le projet avec Docker :
