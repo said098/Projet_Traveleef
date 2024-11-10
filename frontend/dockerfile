@@ -1,0 +1,29 @@
+# Étape 1 : Utiliser l'image Node.js pour construire l'application
+FROM node:18 AS build
+
+# Étape 2 : Définir le répertoire de travail
+WORKDIR /app
+
+# Étape 3 : Copier package.json et package-lock.json
+COPY ./projettraveleef/package.json ./package.json
+COPY ./projettraveleef/package-lock.json ./package-lock.json
+
+
+# Étape 4 : Installer les dépendances
+RUN npm install
+
+# Étape 5 : Copier le reste du code source et compiler l'application
+COPY ./projettraveleef/ ./
+RUN npm run build --prod
+
+# Étape 6 : Utiliser Nginx pour servir l'application Angular
+FROM nginx:alpine
+COPY --from=build /app/dist/projettraveleef/browser /usr/share/nginx/html
+COPY ./nginx/conf.d/default.conf /etc/nginx/conf.d/default.conf
+
+
+# Étape 7 : Exposer le port 80 pour Nginx
+EXPOSE 80
+
+#CMD ["nginx", "-g", "daemon off;"]
+

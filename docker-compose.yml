@@ -1,0 +1,44 @@
+services:
+  frontend:
+    build: ./frontend
+    ports:
+      - "4200:80"
+    depends_on:
+      - backend
+    networks:
+      - frontend_backend_net  
+
+  backend:
+    build: ./backend
+    env_file:
+      - .env
+    secrets:
+      - postgres_password  
+    depends_on:
+      - db
+    networks:
+      - frontend_backend_net  
+      - backend_db_net        
+
+  db:
+    image: postgres:13
+    environment:
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD_FILE=/run/secrets/postgres_password  
+      - POSTGRES_DB=${POSTGRES_DB}
+    volumes:
+      - ./initdb/init.sql:/docker-entrypoint-initdb.d/init.sql
+    secrets:
+      - postgres_password
+    networks:
+      - backend_db_net  
+
+secrets:
+  postgres_password:
+    file: ./secret.txt
+
+networks:
+  frontend_backend_net:
+    driver: bridge
+  backend_db_net:
+    driver: bridge
