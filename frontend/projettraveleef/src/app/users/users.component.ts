@@ -1,3 +1,4 @@
+import {Button, ButtonModule} from 'primeng/button';
 import { Component, OnDestroy } from '@angular/core';
 import {UsersServiceService} from '../users-service.service';
 import {FormsModule} from '@angular/forms';
@@ -8,7 +9,7 @@ import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-users',
   standalone: true,
-  imports: [FormsModule, NgFor, RouterOutlet, RouterLink,NgIf],
+  imports: [FormsModule, NgFor, RouterOutlet, RouterLink, NgIf, Button],
   templateUrl: './users.component.html',
   styleUrl: './users.component.css'
 })
@@ -17,7 +18,7 @@ export class UsersComponent implements OnDestroy {
   private getUsers$: Subscription = new Subscription;
 
   constructor(private usersService: UsersServiceService) {}
-  
+
   ngOnDestroy(): void {
     this.getUsers$ && this.getUsers$.unsubscribe();
   }
