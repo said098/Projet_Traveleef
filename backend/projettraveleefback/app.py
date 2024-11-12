@@ -1,7 +1,6 @@
 from flask import Flask, jsonify
-from flask_sqlalchemy import SQLAlchemy
-import os
 from flask_cors import CORS
+from app.routes import routes_bl
 
 app = Flask(__name__)
 CORS(app)
@@ -17,8 +16,9 @@ def get_users():
 def message():
     return jsonify("la route 5000 par défaut il marche")
 
-if __name__ == '__main__':
-    if DATABASE_URL:  
-       app.run(host="0.0.0.0", port=5000)
-    else:
-        print("Erreur : l'application ne peut pas démarrer sans configuration valide.")
+app.config['DEBUG'] = True
+
+app.register_blueprint(routes_bl)
+
+if __name__ == '__main__': 
+    app.run(host="0.0.0.0", port=5000)
