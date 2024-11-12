@@ -10,6 +10,9 @@ services:
 
   backend:
     build: ./backend
+    environment:
+      - MONGO_URI=${MONGO_URI}
+      - MONGO_DB=${MONGO_DB}
     networks:
       - frontend_backend_net
 

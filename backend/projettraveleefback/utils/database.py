@@ -1,8 +1,13 @@
 from pymongo import MongoClient
-import configparser
+from os import getenv
 
-config = configparser.ConfigParser()
-config.read('backend/projettraveleefback/config/config.ini')
+mongo_uri = getenv('MONGO_URI')
+mongo_db = getenv('MONGO_DB')
 
-mongodb_client = MongoClient(config['DATABASE']['MONGO_URI'])
-db = mongodb_client[config['DATABASE']['MONGO_DB']]
+if not mongo_uri:
+    raise ValueError('MONGO_URI is not set in .env file')
+if not mongo_db:
+    raise ValueError('MONGO_DB is not set in .env file')
+
+mongo_client = MongoClient(mongo_uri)
+db = mongo_client[mongo_db]
