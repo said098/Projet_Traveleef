@@ -1,51 +1,54 @@
+/* Header */
 .header {
-  background-color: #333;
-  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   padding: 10px 20px;
+  background-color: #d8e5c4; /* Couleur d'arrière-plan */
+  border-bottom: 2px solid #a0b78b; /* Ligne en bas */
 }
 
+/* Contenu principal */
 .header-content {
   display: flex;
-  align-items: center;
   justify-content: space-between;
-  max-width: 1200px;
-  margin: 0 auto;
+  align-items: center;
+  width: 100%;
 }
 
-.logo {
-  font-size: 1.5rem;
-  color: #fff;
-  text-decoration: none;
+/* Logo */
+.logo img {
+  height: 50px; /* Ajustez la taille si nécessaire */
+  object-fit: contain;
+}
+
+/* Navigation */
+.nav {
+  margin-left: auto; /* Pousse la navigation vers la droite */
 }
 
 .nav ul {
-  list-style: none;
   display: flex;
-  gap: 20px;
-  padding: 0;
+  list-style: none;
   margin: 0;
+  padding: 0;
+  align-items: center;
+}
+
+.nav li {
+  margin-left: 20px; /* Espacement entre les éléments */
 }
 
 .nav a {
-  color: #fff;
   text-decoration: none;
-  font-size: 1rem;
+  color: #333; /* Couleur des liens */
+  font-weight: bold;
+  font-size: 16px;
 }
 
-.nav a:hover {
-  text-decoration: underline;
-}
-
-@media (max-width: 768px) {
-  .nav ul {
-    gap: 10px;
-  }
-
-  .logo {
-    font-size: 1.2rem;
-  }
-
-  .nav a {
-    font-size: 0.9rem;
-  }
+/* Icône utilisateur */
+.nav-icon {
+  height: 30px; /* Taille de l'icône */
+  width: 30px;
+  object-fit: contain;
 }
