@@ -13,7 +13,7 @@ export class UsersServiceService {
 
   getUsers(): Observable<any[]> {
     //return this.http.get<any[]>(this.apiUrl);  // Utiliser apiUrl ici
-    return this.http.get<any[]>(`/api/users`);
+    return this.http.get<any[]>(`/api/user/get_users`);
 
   }
 }
