@@ -1,11 +1,19 @@
 <header class="header">
   <div class="header-content">
-    <a routerLink="/" class="logo">E Stage Montreuil</a>
+    <!-- Logo -->
+    <a routerLink="/" class="logo">
+      <img src="assets/images/logo.png" alt="Traveleef Logo" />
+    </a>
+    <!-- Navigation -->
     <nav class="nav">
       <ul>
         <li><a routerLink="/">Accueil</a></li>
-        <li><a routerLink="/contact">Contact</a></li> <!-- TODO : rendre inaccessible si pas admin -->
-        <li><a routerLink="/authentification">Connexion</a></li> <!-- TODO : rendre inaccessible si pas connecté -->
+        <li><a routerLink="/contact">Contact</a></li>
+        <li>
+          <a routerLink="/authentification">
+            <img src="assets/images/perso.png" alt="Compte logo" class="nav-icon" />
+          </a>
+        </li>
       </ul>
     </nav>
   </div>
