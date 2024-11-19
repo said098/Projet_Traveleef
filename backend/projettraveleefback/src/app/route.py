@@ -12,3 +12,11 @@ def ping():
 @route_bl.get('/get_users')
 def get_users():
     return controller.get_users()
+
+@route_bl.get('/connexion')
+def login():
+    return controller.connexion()
+
+@route_bl.post('/inscription')
+def inscription():
+    return controller.inscription()
