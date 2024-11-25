@@ -2,5 +2,6 @@
 *.pyc
 *.ini
 *.env
+/frontend/projettraveleef/node_modules/
+/frontend/projettraveleef/.angular/cache/
 node_modules/
-frontend/node_modules
