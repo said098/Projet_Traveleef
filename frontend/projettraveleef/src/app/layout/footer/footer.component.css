@@ -1,56 +1,58 @@
 .footer {
-  background-color: #333;
-  color: #fff;
-  padding: 10px 0;
-}
-
-.footer h3 {
-  margin-bottom: 10px;
-  font-size: 1.2rem;
-}
-
-.footer-content {
+  background-color: #8ca96d; /* Vert similaire */
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 20px;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 20px;
+  padding: 20px;
+  border-radius: 10px;
 }
 
 .footer-section {
-  flex: 1;
-  text-align: center;
+  display: flex;
+  gap: 10px;
+  margin: 10px 0;
 }
 
-.footer-section ul {
-  list-style: none;
-  padding: 0;
+.footer-button {
+  background-color: #8ca96d;
+  border: none;
+  color: white;
+  font-size: 16px;
+  padding: 10px 20px;
+  border-radius: 20px;
+  cursor: pointer;
+  text-transform: uppercase;
 }
 
-.footer-section li {
-  margin: 5px 0;
+.footer-button:hover {
+  background-color: #7d9561;
 }
 
-.footer-section a {
-  color: #fff;
-  text-decoration: none;
+.social-icons {
+  display: flex;
+  gap: 15px;
 }
 
-.footer-section a:hover {
-  text-decoration: underline;
+.icon {
+  width: 40px;
+  height: 40px;
+  display: block;
+  background-size: cover;
+  border-radius: 50%;
 }
 
-.footer-bottom {
-  text-align: center;
-  margin-top: 20px;
-  font-size: 0.9rem;
+.instagram {
+  background-image: url('/assets/images/instagramlogo.png'); /* Chemin absolu */
 }
 
-.footer-bottom p {
-  margin: 0;
+.facebook {
+  background-image: url('/assets/images/facebooklogo.png'); /* Chemin absolu */
 }
+
+.twitter {
+  background-image: url('/assets/images/twitterlogo.png'); /* Chemin absolu */
+}
+
 
 @media (min-width: 768px) {
   .footer-content {
