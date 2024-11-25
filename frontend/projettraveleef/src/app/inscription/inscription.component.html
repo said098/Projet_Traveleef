@@ -1,0 +1,24 @@
+<p>inscription works!</p>
+<div class="inscription-container">
+    <h1>Inscription</h1>
+
+    <form [formGroup]="form_inscription" (ngSubmit)="onSubmitForm(form_inscription)" class="form">
+        <p-floatLabel class="float-label">
+          <input pInputText id="email" formControlName="email" required class="input"/>
+          <label for="Identifiant">Entrez votre email</label>
+        </p-floatLabel>
+
+        <p-floatLabel class="float-label">
+            <input pInputText id="password" formControlName="pwd_confirm" required class="input" type="password" autocomplete="new-password"/>
+            <label for="Mot de passe">Validez votre mot de passe</label>
+        </p-floatLabel>
+
+      <div id="button-container">
+        <button pButton type="submit" [outlined]="true" class="p-button-success">Connexion</button>
+      </div>
+    </form>
+
+    <div class="button-group">
+      <p-button [label]="connexion_label" [link]="true" (click)="prev()" size="small"></p-button>
+    </div>
+</div>

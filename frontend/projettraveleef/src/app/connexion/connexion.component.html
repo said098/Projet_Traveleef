@@ -1,0 +1,47 @@
+<p>connexion works!</p>
+<div class="connexion-container">
+    <h1>Connexion</h1>
+
+    <form [formGroup]="form_connexion" (ngSubmit)="onSubmitForm(form_connexion)" class="form">
+        <p-floatLabel class="float-label">
+          <input pInputText id="email" formControlName="email" required class="input"/>
+          <label for="Identifiant">Entrez votre email</label>
+        </p-floatLabel>
+
+        <p-floatLabel class="float-label">
+            <p-password [toggleMask]="true" 
+                        [feedback]="true" 
+                        id="pwd"
+                        weakLabel="Invalide"
+                        strongLabel="Valide"
+                        mediumRLabel="Presque"
+                        strongRegex="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})
+                        "
+                        formControlName="pwd" required class="input" autocomplete="new-password" variant="outlined">
+                  <ng-template pTemplate="header">
+                    <h6>Choisissez un mot de passe</h6>
+                  </ng-template>
+                  <ng-template pTemplate="footer">
+                    <p-divider />
+                    <p class="mt-2">Condition</p>
+                    <ul class="pl-2 ml-2 mt-0" style="line-height: 1.5">
+                        <li>Minimum 8 charactères</li>
+                        <li>Au moins un chiffre</li>
+                        <li>Au moins une lettre majuscule</li>
+                        <li>Au moins une lettre minuscule</li>
+                        <li>Au moins un caractère spécial</li>
+                    </ul>
+                </ng-template>
+            </p-password>
+            <label for="pwd">Mot de passe</label>
+          </p-floatLabel>
+
+      <div id="button-container">
+        <button pButton type="submit" [outlined]="true" class="p-button-success">Connexion</button>
+      </div>
+    </form>
+
+    <div class="button-group">
+      <p-button [label]="inscription_label" [link]="true" (click)="next()" size="small"></p-button>
+    </div>
+</div>

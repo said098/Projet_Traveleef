@@ -1,0 +1,44 @@
+.inscription-container {
+    grid-column: 2;
+    grid-row: 2;
+    display: flex;
+    flex-direction: column;
+    justify-self: center;
+    align-self: center;
+    text-align: center;
+    width: fit-content;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.input {
+    width: 100%;
+}
+
+.button-group {
+    text-align: center;
+    margin-top: 15px;
+}
+
+::ng-deep .float-label .p-password {
+    width: 100%;
+}
+
+::ng-deep .float-label .p-password .p-password-input {
+    width: 100%;
+}
+
+::ng-deep .float-label .p-password .p-inputtext {
+    width: 100%;
+}
+
+:host  ::ng-deep .p-carousel-item{
+    max-height: 0;
+}
+ :host ::ng-deep  .p-carousel-item-active{
+   max-height: 100% !important;
+}
