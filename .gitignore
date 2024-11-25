@@ -1,3 +1,4 @@
 /backend/projettraveleefback/__pycache__/
 *.pyc
 *.ini
+*.env
