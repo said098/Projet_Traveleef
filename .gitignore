@@ -2,3 +2,5 @@
 *.pyc
 *.ini
 *.env
+node_modules/
+frontend/node_modules
