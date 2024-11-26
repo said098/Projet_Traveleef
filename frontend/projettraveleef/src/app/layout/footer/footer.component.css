@@ -34,10 +34,11 @@
 }
 
 .footer-button:hover {
-  background-color: #7d9561; /* Légèrement plus sombre */
+  width: 100%;
+  background-color: #7d9561;
 }
 .resiaux{
-  background-color: #8ca96d; /* Couleur verte */
+  background-color: #8ca96d;
   padding: 20px;
   border-radius: 10px;
   display: flex;
