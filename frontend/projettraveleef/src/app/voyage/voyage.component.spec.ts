@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { VoyageComponent } from './voyage.component';
 
 describe('VoyageComponent', () => {
@@ -8,7 +7,7 @@ describe('VoyageComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [VoyageComponent]
+      declarations: [ VoyageComponent ]
     })
     .compileComponents();
 
@@ -19,5 +18,11 @@ describe('VoyageComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should render the list of voyages', () => {
+    const compiled = fixture.nativeElement as HTMLElement;
+    expect(compiled.querySelector('h2')?.textContent).toContain('Gestion Des Reservations');
+    expect(compiled.querySelectorAll('table tr').length).toBe(component.voyages.length + 1); // +1 for the header row
   });
 });

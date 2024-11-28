@@ -1,1 +1,17 @@
-<p>voyage works!</p>
+<div class="reservation-container">
+    <h2>Gestion Des Reservations</h2>
+    <div class="reservation-list">
+      <h3>Liste de votre voyages</h3>
+      <table>
+        <tr>
+          <th>Trajet</th>
+          <th>Date</th>
+        </tr>
+        <tr *ngFor="let voyage of voyages">
+          <td>{{ voyage.trajet }}</td>
+          <td>{{ voyage.date }}</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  
