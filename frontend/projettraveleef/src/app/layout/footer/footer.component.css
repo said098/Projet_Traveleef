@@ -1,0 +1,86 @@
+.footer {
+  background-color: #fffdfd; /* Couleur verte */
+  padding: 20px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  width: 100%;
+}
+
+.footer-section1,
+.footer-section2 {
+  border-radius: 20px;
+  background-color: #8ca96d;
+  width: 100%;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.footer-section1 {
+  margin-bottom: 20px; /* Espacement entre Partenariat et À propos */
+}
+
+.footer-button {
+  background-color: #8ca96d;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  padding: 10px 30px;
+  font-size: 16px;
+  cursor: pointer;
+  text-transform: uppercase;
+}
+
+.footer-button:hover {
+  background-color: #7d9561; /* Légèrement plus sombre */
+}
+.resiaux{
+  background-color: #8ca96d; /* Couleur verte */
+  padding: 20px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  width: 100%;
+}
+
+.social-icons {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  margin-top: 20px; /* Espacement entre À propos et les icônes sociales */
+}
+
+.icon {
+  width: 40px;
+  height: 40px;
+  display: block;
+  background-size: cover;
+  border-radius: 50%;
+}
+
+.instagram {
+  background-image: url('/assets/images/instagramlogo.png');
+}
+
+.facebook {
+  background-image: url('/assets/images/facebooklogo.png');
+}
+
+.twitter {
+  background-image: url('/assets/images/twitterlogo.png');
+}
+
+@media (min-width: 768px) {
+  .footer-content {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .footer-section {
+    text-align: left;
+  }
+}

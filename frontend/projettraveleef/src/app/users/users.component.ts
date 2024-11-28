@@ -28,9 +28,9 @@ export class UsersComponent implements OnDestroy {
   }
 
   getUsers(): void {
-     this.getUsers$ = this.usersService.getUsers().subscribe((data: any[]) => {
-      this.users = data;
-    });
+     //this.getUsers$ = this.usersService.getUsers().subscribe((data: any[]) => {
+     // this.users = data;
+    //});
 
   }
 }
