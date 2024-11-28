@@ -1,9 +1,5 @@
 /backend/projettraveleefback/__pycache__/
 *.pyc
 *.ini
-<<<<<<< HEAD
-*.env
-=======
 /frontend/projettraveleef/.angular
 /frontend/projettraveleef/node_modules
->>>>>>> origin/headerEtFooter
