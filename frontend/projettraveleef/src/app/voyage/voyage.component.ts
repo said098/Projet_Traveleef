@@ -1,18 +1,22 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { VolService } from '../services/vol.service';
 import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-voyage',
-  standalone: true, 
   imports: [CommonModule], 
+  standalone: true,
   templateUrl: './voyage.component.html',
   styleUrls: ['./voyage.component.css']
 })
-export class VoyageComponent {
-  voyages = [
-    { trajet: 'Paris - Londres', date: '10/10/2003' },
-    { trajet: 'Paris - New York', date: '11/05/2003' },
-    { trajet: 'Berlin - Paris', date: '01/08/2020' },
-    { trajet: 'Oslo - Paris', date: '01/08/2020' }
-  ];
+export class VoyageComponent implements OnInit {
+  vols: any[] = [];
+
+  constructor(private volService: VolService) {}
+
+  ngOnInit(): void {
+    this.volService.getVols().subscribe((data) => {
+      this.vols = data;
+    });
+  }
 }

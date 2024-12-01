@@ -1,17 +1,28 @@
 <div class="reservation-container">
-    <h2>Gestion Des Reservations</h2>
-    <div class="reservation-list">
-      <h3>Liste de votre voyages</h3>
-      <table>
+  <h2>Gestion des Réservations de Vols</h2>
+  <div *ngIf="vols.length > 0; else noData">
+    <table>
+      <thead>
         <tr>
+          <th>Compagnie</th>
           <th>Trajet</th>
           <th>Date</th>
+          <th>Heure</th>
+          <th>Terminal</th>
         </tr>
-        <tr *ngFor="let voyage of voyages">
-          <td>{{ voyage.trajet }}</td>
-          <td>{{ voyage.date }}</td>
+      </thead>
+      <tbody>
+        <tr *ngFor="let vol of vols">
+          <td>{{ vol.compagnie }}</td>
+          <td>{{ vol.trajet }}</td>
+          <td>{{ vol.date }}</td>
+          <td>{{ vol.heure }}</td>
+          <td>{{ vol.terminal }}</td>
         </tr>
-      </table>
-    </div>
+      </tbody>
+    </table>
   </div>
-  
+  <ng-template #noData>
+    <p>Aucune réservation de vol disponible pour le moment.</p>
+  </ng-template>
+</div>
