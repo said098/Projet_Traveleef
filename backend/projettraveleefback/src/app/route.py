@@ -1,22 +1,30 @@
-from flask import Blueprint, jsonify
-import src.app.controller as controller
+from flask import Blueprint
+from .controller import (
+    ping_pong,
+    get_users,
+    connexion,
+    inscription,
+    get_flight_emissions
+)
 
 route_bl = Blueprint('route_bl', __name__)
 
-
-
 @route_bl.get('/')
 def ping():
-    return controller.ping_pong()
+    return ping_pong()
 
 @route_bl.get('/get_users')
-def get_users():
-    return controller.get_users()
+def users():
+    return get_users()
 
 @route_bl.get('/connexion')
 def login():
-    return controller.connexion()
+    return connexion()
 
 @route_bl.post('/inscription')
-def inscription():
-    return controller.inscription()
+def register():
+    return inscription()
+
+@route_bl.post('/flight_emissions')
+def flight_emissions():
+    return get_flight_emissions()
