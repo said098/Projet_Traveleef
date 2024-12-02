@@ -1,0 +1,30 @@
+.titre{
+  background-color: #8fc18a;
+}
+
+
+.row.mt-5 {
+  background: url('/assets/images/LogoTraveleefgreen.png') no-repeat left center,
+  url('/assets/images/LogoTraveleefgreen.png') no-repeat right center;
+  background-size: contain;
+  position: relative;
+  padding: 20px;
+  text-align: center;
+  color: #000;
+  border-radius: 15px;
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.row.mt-5:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2); /* Ombre au survol */
+}
+
+.row.mt-5 h3,
+.row.mt-5,h2, p {
+  position: relative;
+  z-index: 2;
+}
+
+
+

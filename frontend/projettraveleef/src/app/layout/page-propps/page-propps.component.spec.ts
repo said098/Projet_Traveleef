@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { FilterComponent } from './filter.component';
+import { PageProppsComponent } from './page-propps.component';
 
-describe('FilterComponent', () => {
-  let component: FilterComponent;
-  let fixture: ComponentFixture<FilterComponent>;
+describe('PageProppsComponent', () => {
+  let component: PageProppsComponent;
+  let fixture: ComponentFixture<PageProppsComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [FilterComponent]
+      imports: [PageProppsComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(FilterComponent);
+    fixture = TestBed.createComponent(PageProppsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
