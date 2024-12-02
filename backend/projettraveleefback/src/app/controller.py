@@ -12,7 +12,7 @@ from datetime import datetime
 import base64
 
 
-GOOGLE_API_KEY = "" #ajouter la clé ici
+GOOGLE_API_KEY = "AIzaSyBvCjx9LwR0tFvB1Kl_9iZRe28WmN-KDQg" #ajouter la clé ici
 
 controller_bl = Blueprint('controller_bl', __name__)
 
