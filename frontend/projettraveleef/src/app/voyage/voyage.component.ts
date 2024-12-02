@@ -1,22 +1,32 @@
-import { Component, OnInit } from '@angular/core';
-import { VolService } from '../services/vol.service';
+import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-voyage',
-  imports: [CommonModule], 
-  standalone: true,
   templateUrl: './voyage.component.html',
-  styleUrls: ['./voyage.component.css']
+  styleUrls: ['./voyage.component.css'],
+  standalone: true,
+  imports: [CommonModule]
 })
-export class VoyageComponent implements OnInit {
-  vols: any[] = [];
+export class VoyageComponent {
+  vols = [
+    { compagnie: 'Air France', trajet: 'Paris - Londres', date: '2024-12-01', heure: '12:00', terminal: 'T2' },
+    { compagnie: 'British Airways', trajet: 'Paris - New York', date: '2024-12-10', heure: '16:00', terminal: 'T1' },
+    { compagnie: 'Lufthansa', trajet: 'Berlin - Paris', date: '2024-12-15', heure: '09:00', terminal: 'T3' }
+  ];
 
-  constructor(private volService: VolService) {}
+  canCancel(date: string): boolean {
+    const flightDate = new Date(date);
+    const currentDate = new Date();
+    const diffInHours = (flightDate.getTime() - currentDate.getTime()) / (1000 * 60 * 60);
+    return diffInHours > 48; // Annulable si plus de 48 heures avant la date
+  }
 
-  ngOnInit(): void {
-    this.volService.getVols().subscribe((data) => {
-      this.vols = data;
-    });
+  cancelReservation(index: number): void {
+    const vol = this.vols[index];
+    if (this.canCancel(vol.date)) {
+      this.vols.splice(index, 1);
+      alert(`La réservation pour "${vol.trajet}" a été annulée.`);
+    }
   }
 }

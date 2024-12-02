@@ -9,15 +9,24 @@
           <th>Date</th>
           <th>Heure</th>
           <th>Terminal</th>
+          <th>Action</th>
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let vol of vols">
+        <tr *ngFor="let vol of vols; let i = index">
           <td>{{ vol.compagnie }}</td>
           <td>{{ vol.trajet }}</td>
-          <td>{{ vol.date }}</td>
+          <td>{{ vol.date | date: 'dd/MM/yyyy' }}</td>
           <td>{{ vol.heure }}</td>
           <td>{{ vol.terminal }}</td>
+          <td>
+            <ng-container *ngIf="canCancel(vol.date); else noCancel">
+              <button class="cancel-btn" (click)="cancelReservation(i)">Annuler</button>
+            </ng-container>
+            <ng-template #noCancel>
+              <span class="no-cancel-msg">Annulation impossible</span>
+            </ng-template>
+          </td>
         </tr>
       </tbody>
     </table>
