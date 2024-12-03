@@ -2,7 +2,7 @@
 *.pyc
 *.ini
 /frontend/projettraveleef/.angular
-/frontend/projettraveleef/node_modules
+/frontend/projettraveleef/node_modules/
 
 
 
