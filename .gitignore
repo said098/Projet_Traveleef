@@ -3,3 +3,32 @@
 *.ini
 /frontend/projettraveleef/.angular
 /frontend/projettraveleef/node_modules
+
+
+
+# Ignorer les fichiers Angular cache
+.angular/cache/
+
+# Ignorer les fichiers spécifiques à l'IDE
+.idea/
+
+# Ignorer les fichiers de build (si applicable)
+dist/
+build/
+
+# Ignorer les fichiers de logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Ignorer les fichiers temporaires du système
+.DS_Store
+Thumbs.db
+
+# Ignorer les fichiers générés par l'éditeur
+*.swp
+*.swo
+*.tmp
+
+# Ignorer les fichiers de configuration de TypeScript build info
+*.tsbuildinfo
