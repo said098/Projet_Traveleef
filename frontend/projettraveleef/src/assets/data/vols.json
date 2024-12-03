@@ -1,0 +1,35 @@
+[
+    {
+      "id": 1,
+      "compagnie": "Air France",
+      "trajet": "Paris - Londres",
+      "date": "2024-12-15",
+      "heure": "08:30",
+      "terminal": "T2"
+    },
+    {
+      "id": 2,
+      "compagnie": "British Airways",
+      "trajet": "Paris - New York",
+      "date": "2024-12-20",
+      "heure": "14:15",
+      "terminal": "T1"
+    },
+    {
+      "id": 3,
+      "compagnie": "Lufthansa",
+      "trajet": "Berlin - Paris",
+      "date": "2024-12-25",
+      "heure": "10:00",
+      "terminal": "T3"
+    },
+    {
+      "id": 4,
+      "compagnie": "Norwegian Air",
+      "trajet": "Oslo - Paris",
+      "date": "2024-12-30",
+      "heure": "18:45",
+      "terminal": "T4"
+    }
+  ]
+  

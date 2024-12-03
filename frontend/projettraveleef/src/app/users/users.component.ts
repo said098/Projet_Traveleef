@@ -1,6 +1,6 @@
 import {Button, ButtonModule} from 'primeng/button';
 import { Component, OnDestroy } from '@angular/core';
-import {UsersServiceService} from '../users-service.service';
+import {UsersServiceService} from '../services/users-service.service';
 import {FormsModule} from '@angular/forms';
 import {NgFor, NgIf} from '@angular/common';
 import {RouterLink, RouterOutlet} from '@angular/router';
