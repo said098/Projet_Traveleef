@@ -14,11 +14,36 @@
       </thead>
       <tbody>
         <tr *ngFor="let vol of vols; let i = index">
-          <td>{{ vol.compagnie }}</td>
+          <!-- Colonne Compagnie avec Logo -->
+          <td>
+            <img
+              [src]="getLogoUrl(vol.compagnie)"
+              [alt]="'Logo de ' + vol.compagnie"
+              class="compagnie-logo"
+              (error)="onLogoError($event)"
+            />
+            {{ vol.compagnie }}
+          </td>
+
+          <!-- Colonne Trajet -->
           <td>{{ vol.trajet }}</td>
-          <td>{{ vol.date | date: 'dd/MM/yyyy' }}</td>
-          <td>{{ vol.heure }}</td>
+
+          <!-- Colonne Date avec Icône -->
+          <td>
+            {{ vol.date | date: 'dd/MM/yyyy' }}
+            <img src="assets/images/calendrier.png" alt="Calendrier" class="icon" />
+          </td>
+
+          
+          <td>
+            {{ vol.heure }}
+            <img src="assets/images/temps.png" alt="Calendrier" class="icon" />
+          </td>
+
+        
           <td>{{ vol.terminal }}</td>
+
+        
           <td>
             <ng-container *ngIf="canCancel(vol.date); else noCancel">
               <button class="cancel-btn" (click)="cancelReservation(i)">Annuler</button>
