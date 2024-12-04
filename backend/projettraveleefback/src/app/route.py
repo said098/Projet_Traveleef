@@ -1,10 +1,12 @@
 from flask import Blueprint
+
 from .controller import (
     ping_pong,
     get_users,
     connexion,
     inscription,
-    get_flight_emissions
+    get_flight_emissions,
+    search_trips
 )
 
 route_bl = Blueprint('route_bl', __name__)
@@ -28,3 +30,7 @@ def register():
 @route_bl.post('/flight_emissions')
 def flight_emissions():
     return get_flight_emissions()
+
+@route_bl.post('/search_trips')
+def search_for_trips():
+    return search_trips()

@@ -1,18 +1,18 @@
 from flask import jsonify, Blueprint, make_response, request
 from flask_jwt_extended import jwt_required, get_jwt_identity, create_access_token, create_refresh_token, set_access_cookies, set_refresh_cookies, unset_jwt_cookies
-from bson.json_util import dumps
-from ..utils.database import db
-from ..utils.mappers.utilisateur_mappeur import mappeur
+from backend.projettraveleefback.src.utils.database import db
+from backend.projettraveleefback.src.utils.mappers.utilisateur_mappeur import mappeur
 import requests
 from flask import jsonify, request
 from datetime import datetime
-
-
-
+from bson.json_util import dumps
+from serpapi import GoogleSearch
 import base64
 
 
-GOOGLE_API_KEY = "AIzaSyBvCjx9LwR0tFvB1Kl_9iZRe28WmN-KDQg" #ajouter la clé ici
+GOOGLE_API_KEY = "" #ajouter la clé ici
+SERPAPI_API_KEY = ""
+
 
 controller_bl = Blueprint('controller_bl', __name__)
 
@@ -128,3 +128,34 @@ def get_flight_emissions():
         return jsonify(response.json())
     else:
         return jsonify({"error": response.text}), response.status_code
+
+
+def search_trips():
+    data = request.get_json()
+    if not data:
+        return jsonify({"error": "Données de requête manquantes"}), 400
+
+    required_fields = ["departure_id", "arrival_id", "outbound_date", "return_date", "currency", "hl"]
+    if not all(field in data for field in required_fields):
+        return jsonify({"error": f"Les champs suivants sont requis : {', '.join(required_fields)}"}), 400
+
+    params = {
+        "engine": "google_flights",
+        "departure_id": data["departure_id"],    # ex : "CDG,ORY"
+        "arrival_id": data["arrival_id"],        # ex : "LAX"
+        "outbound_date": data["outbound_date"],  # format : "YYYY-MM-DD"
+        "return_date": data["return_date"],      # format : "YYYY-MM-DD"
+        "currency": data["currency"],            # ex : "USD"
+        "hl": data["hl"],                        # langue : "en"
+        "api_key": SERPAPI_API_KEY
+    }
+
+    # effectuer la recherche
+    search = GoogleSearch(params)
+    results = search.get_dict()
+
+    # récupérer les vols
+    flights = results.get("other_flights", [])
+
+
+    return jsonify({"flights": flights})
