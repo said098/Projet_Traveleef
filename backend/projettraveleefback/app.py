@@ -4,8 +4,9 @@ from flask_jwt_extended import JWTManager
 from os import getenv
 from src.app.route import route_bl
 
+
 app = Flask(__name__)
-CORS(app)
+CORS(app, supports_credentials=True)
 
 app.config['DEBUG'] = True
 

@@ -14,9 +14,6 @@ class Utilisateur:
         user = db.utilisateur.find_one({'email': self.email, 'password': self.password}) 
         if not user:
             return 'Invalid email or password'
-        print('-------------------')
-        print('--->', user['password'], '==', self.password)
-        print('-------------------')
         
         if Bcrypt().check_password_hash(user['password'], self.password):
             return True
@@ -26,6 +23,7 @@ class Utilisateur:
     def inscription(self):
         if db.utilisateur.find_one({'email': self.email}):
             return 'Email already exists'
+        
         
         user = Utilisateur(None, self.email, self.hash_pwd())
         db.utilisateur.insert_one(user.__dict__)
