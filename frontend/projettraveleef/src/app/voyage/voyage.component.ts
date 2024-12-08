@@ -1,45 +1,60 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
+import { VolService } from '../services/vol.service';
+
+export interface Vol {
+  id: number;
+  compagnie: string;
+  trajet: string;
+  date: string;
+  heure: string;
+  terminal: string;
+}
 
 @Component({
   selector: 'app-voyage',
   templateUrl: './voyage.component.html',
   styleUrls: ['./voyage.component.css'],
   standalone: true,
-  imports: [CommonModule]
+  imports: [CommonModule, RouterModule],
 })
-export class VoyageComponent {
-  vols = [
-    { compagnie: 'Air France', trajet: 'Paris - Londres', date: '2024-12-01', heure: '12:00', terminal: 'T2' },
-    { compagnie: 'British Airways', trajet: 'Paris - New York', date: '2024-12-10', heure: '16:00', terminal: 'T1' },
-    { compagnie: 'Lufthansa', trajet: 'Berlin - Paris', date: '2024-12-15', heure: '09:00', terminal: 'T3' }
-  ];
+export class VoyageComponent implements OnInit {
+  vols: Vol[] = []; 
 
+  constructor(private volService: VolService) {}
 
-  // Générer dynamiquement l'URL du logo
+  ngOnInit(): void {
+    this.volService.getVols().subscribe(
+      (data: Vol[]) => {
+        this.vols = data;
+      },
+      (error) => {
+        console.error('Erreur lors de la récupération des vols :', error);
+      }
+    );
+  }
+
   getLogoUrl(compagnie: string): string {
-    const baseUrl = 'https://logo.clearbit.com';
-    const domain = compagnie.replace(/\s+/g, '').toLowerCase() + '.com'; // Simplification pour obtenir un domaine
-    return `${baseUrl}/${domain}`;
+    const predefinedDomains: { [key: string]: string } = {
+      'Air France': 'airfrance.com',
+      'British Airways': 'ba.com',
+      'Lufthansa': 'lufthansa.com',
+      'Norwegian Air': 'norvegian.com',
+    };
+
+    const domain =
+      predefinedDomains[compagnie] ||
+      compagnie.replace(/\s+/g, '').toLowerCase() + '.com';
+
+    return `https://logo.clearbit.com/${domain}`;
   }
 
   onLogoError(event: Event): void {
-    (event.target as HTMLImageElement).src = 'assets/default-logo.png'; // Image par défaut
-  }
-  
-
-  canCancel(date: string): boolean {
-    const flightDate = new Date(date);
-    const currentDate = new Date();
-    const diffInHours = (flightDate.getTime() - currentDate.getTime()) / (1000 * 60 * 60);
-    return diffInHours > 48; // Annulable si plus de 48 heures avant la date
+    (event.target as HTMLImageElement).src = 'assets/images/default-logo.png';
   }
 
-  cancelReservation(index: number): void {
-    const vol = this.vols[index];
-    if (this.canCancel(vol.date)) {
-      this.vols.splice(index, 1);
-      alert(`La réservation pour "${vol.trajet}" a été annulée.`);
-    }
+  goBack(): void {
+    window.history.back();
   }
 }

@@ -4,11 +4,12 @@ import {HeaderComponent} from './layout/header/header.component';
 import {FooterComponent} from './layout/footer/footer.component';
 import {PageAccueilComponent} from './layout/page-accueil/page-accueil.component';
 import { VoyageComponent } from './voyage/voyage.component';
+import { VolDetailsComponent } from './vol-details/vol-details.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, HeaderComponent, FooterComponent,PageAccueilComponent, VoyageComponent],
+  imports: [RouterOutlet, HeaderComponent, FooterComponent,PageAccueilComponent, VoyageComponent,VolDetailsComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
