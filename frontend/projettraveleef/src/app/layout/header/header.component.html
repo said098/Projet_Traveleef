@@ -1,19 +1,22 @@
 <header class="header">
   <div class="header-content">
-    <!-- Logo -->
     <a routerLink="/" class="logo">
-      <img src="assets/images/logo.png" alt="Traveleef Logo" />
+      <img src="assets/images/logo.png" alt="Logo" />
     </a>
-    <!-- Navigation -->
+
     <nav class="nav">
       <ul>
         <li><a routerLink="/">Accueil</a></li>
-        <li><a routerLink="/contact">Partenaires</a></li>
-        <li>
-          <a routerLink="/authentification">
-            <img src="assets/images/perso.png" alt="Compte logo" class="nav-icon" />
-          </a>
+        <li *ngIf="isAuthenticated(); else notAuthenticated">
+          <button (click)="logout()" class="logout-button">Déconnexion</button>
         </li>
+        <ng-template #notAuthenticated>
+          <li>
+            <a routerLink="/auth">
+              <img src="assets/images/perso.png" alt="Compte logo" class="nav-icon" />
+            </a>
+          </li>
+        </ng-template>
       </ul>
     </nav>
   </div>
