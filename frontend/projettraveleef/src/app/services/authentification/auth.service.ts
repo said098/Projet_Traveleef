@@ -23,7 +23,7 @@ export class AuthService {
     )
   }
 
-  connexion(id: string, password: string): Observable<any> { 
+  connexion(id: string, password: string): Observable<any> {
     return this.http.get(
       this.apiConfig.getURL('/user/connexion'),
       { headers: new HttpHeaders({
@@ -39,5 +39,24 @@ export class AuthService {
   isAuthenticated(): boolean {
     return this.cookieService.check('csrf_access_token');
   }
+  redirectIfAuthenticated(): void {
+    if (this.isAuthenticated()) {
+      this.router.navigate(['/']);
+    }
+  }
+
+  logout(): Observable<any> {
+    return this.http.post(this.apiConfig.getURL('/user/logout'), {}).pipe(
+      tap(() => {
+        // Supprimer les cookies ou autres états locaux d'authentification
+        this.cookieService.delete('csrf_access_token');
+        this.cookieService.deleteAll(); // Optionnel si plusieurs cookies doivent être supprimés
+
+        // Rediriger l'utilisateur vers la page d'authentification
+        this.router.navigate(['/']);
+      })
+    );
+  }
+
 
 }
