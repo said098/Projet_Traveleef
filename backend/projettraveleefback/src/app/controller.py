@@ -10,8 +10,8 @@ from serpapi import GoogleSearch
 import base64
 
 
-GOOGLE_API_KEY = "" #ajouter la clé ici
-SERPAPI_API_KEY = ""
+GOOGLE_API_KEY = "AIzaSyBvCjx9LwR0tFvB1Kl_9iZRe28WmN-KDQg" #ajouter la clé ici
+SERPAPI_API_KEY = "945cfb9cca45f989c0f533ed55dc04d49e33e5f12173a46e923dd5f49acf4523"
 
 
 controller_bl = Blueprint('controller_bl', __name__)
