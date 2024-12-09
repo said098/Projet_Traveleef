@@ -5,6 +5,7 @@ import { PasswordModule } from 'primeng/password';
 import { ButtonModule } from 'primeng/button';
 import { FloatLabelModule } from 'primeng/floatlabel';
 import { AuthCarouselService } from '../../services/authentification/auth-carousel.service';
+import { InputTextModule } from 'primeng/inputtext';
 
 @Component({
   selector: 'app-connexion',
@@ -13,7 +14,8 @@ import { AuthCarouselService } from '../../services/authentification/auth-carous
     PasswordModule,
     ButtonModule,
     FloatLabelModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    InputTextModule
   ],
   templateUrl: './connexion.component.html',
   styleUrl: './connexion.component.css'
