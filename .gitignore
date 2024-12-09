@@ -1,3 +1,5 @@
 /backend/projettraveleefback/__pycache__/
 *.pyc
 *.ini
+/frontend/projettraveleef/node_modules/
+/frontend/projettraveleef/.angular/
