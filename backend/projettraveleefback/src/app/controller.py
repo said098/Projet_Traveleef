@@ -72,3 +72,13 @@ def inscription():
     user.inscription()
     
     return jsonify('Inscription success'), 200
+
+
+
+def logout():
+    response = make_response(jsonify({"message": "Déconnexion réussie"}), 200)
+    response.set_cookie('csrf_access_token', '', expires=0)
+    return response
+
+
+
