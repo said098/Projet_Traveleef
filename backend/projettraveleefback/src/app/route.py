@@ -21,3 +21,7 @@ def login():
 @route_bl.post('/inscription')
 def inscription():
     return controller.inscription()
+
+@route_bl.route('/logout', methods=['POST'])
+def logout():
+    return controller.logout()
