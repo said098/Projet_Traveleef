@@ -15,6 +15,7 @@ def get_users():
 
 @route_bl.get('/connexion')
 def login():
+    print('UWU')
     return controller.connexion()
 
 @route_bl.post('/inscription')

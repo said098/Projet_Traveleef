@@ -34,3 +34,6 @@ Thumbs.db
 
 # Ignorer les fichiers de configuration de TypeScript build info
 *.tsbuildinfo
+
+/frontend/projettraveleef/node_modules/
+/frontend/projettraveleef/.angular/

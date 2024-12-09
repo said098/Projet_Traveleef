@@ -4,9 +4,10 @@ from bson import ObjectId
 
 class Utilisateur:
     
-    def __init__(self, id, email, password):
+    def __init__(self, id, email, tel, password):
         self._id = id if id else ObjectId()
-        self.email = email
+        self.email = email,
+        self.tel = tel
         self.password = password
         
     
@@ -14,9 +15,6 @@ class Utilisateur:
         user = db.utilisateur.find_one({'email': self.email, 'password': self.password}) 
         if not user:
             return 'Invalid email or password'
-        print('-------------------')
-        print('--->', user['password'], '==', self.password)
-        print('-------------------')
         
         if Bcrypt().check_password_hash(user['password'], self.password):
             return True
@@ -27,7 +25,8 @@ class Utilisateur:
         if db.utilisateur.find_one({'email': self.email}):
             return 'Email already exists'
         
-        user = Utilisateur(None, self.email, self.hash_pwd())
+        
+        user = Utilisateur(None, self.email, self.tel, self.hash_pwd()) # email est une arry donc on prend le premier element
         db.utilisateur.insert_one(user.__dict__)
         
         return 'User created'

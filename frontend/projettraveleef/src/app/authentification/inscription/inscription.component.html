@@ -1,0 +1,33 @@
+<div class="inscription-container">
+    <h1>Inscription</h1>
+
+    <form [formGroup]="form_inscription" (ngSubmit)="onSubmitForm(form_inscription)" class="form">
+        <p-floatLabel class="float-label">
+          <input pInputText id="email" formControlName="email" required class="input"/>
+          <label for="Identifiant">Entrez votre email</label>
+        </p-floatLabel>
+
+        <p-floatLabel class="float-label">
+          <input pInputText id="tel" formControlName="tel" required class="input"/>
+          <label for="n°">Entrez votre n° de Téléphone</label>
+        </p-floatLabel>
+
+        <p-floatLabel class="float-label">
+            <p-password id="password" formControlName="pwd" id="pwd" [toggleMask]="true" [feedback]="false" required class="input"></p-password>
+            <label for="pwd">Mot de passe</label>
+          </p-floatLabel>
+
+        <p-floatLabel class="float-label">
+            <p-password id="password" formControlName="pwd_confirm" id="pwd_confirm" [toggleMask]="true" [feedback]="false" required class="input"></p-password>
+            <label for="Mot de passe">Entrez votre mot de passe</label>
+        </p-floatLabel>
+
+      <div id="button-container">
+        <button pButton type="submit" [outlined]="true" class="p-button-success">Inscription</button>
+      </div>
+    </form>
+
+    <div class="button-group">
+      <p-button [label]="connexion_label" [link]="true" (click)="prev()" size="small"></p-button>
+    </div>
+</div>
