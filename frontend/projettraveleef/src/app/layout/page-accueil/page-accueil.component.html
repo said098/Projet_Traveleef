@@ -1,0 +1,60 @@
+<div class="container-fluid py-4">
+  <div class="row g-3">
+    <!-- Section des filtres -->
+    <div class="col-lg-3 col-md-4 col-12 ">
+      <div class="filters bg-custom p-3">
+        <h2 class="text-center mb-4">Filtres</h2>
+
+        <!-- Section Escales -->
+        <div class="filter-section mb-4">
+          <h3 class="text-secondary">Escales</h3>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="une-escale">
+            <label class="form-check-label" for="une-escale">Une Escale</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="deux-escales">
+            <label class="form-check-label" for="deux-escales">Deux Escales</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="pas-escale">
+            <label class="form-check-label" for="pas-escale">Pas d'Escale</label>
+          </div>
+        </div>
+
+        <!-- Section Compagnies -->
+        <div class="filter-section">
+          <h3 class="text-secondary">Compagnies</h3>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="ryanair">
+            <label class="form-check-label" for="ryanair">Ryanair</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="airfrance">
+            <label class="form-check-label" for="airfrance">AirFrance</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="transavia">
+            <label class="form-check-label" for="transavia">Transavia</label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section de recherche -->
+    <div class="col-lg-9 col-md-8 col-12 bg-custom2">
+      <div class="search p-3 bg-custom rounded shadow-sm d-flex flex-wrap align-items-center">
+        <input type="text" class="form-control me-2 mb-2" placeholder="Paris">
+        <input type="text" class="form-control me-2 mb-2" placeholder="Milan">
+        <select class="form-select me-2 mb-2">
+          <option selected>Départ</option>
+        </select>
+        <select class="form-select me-2 mb-2">
+          <option selected>Retour</option>
+        </select>
+        <input type="number" class="form-control me-2 mb-2" placeholder="Nombre de personnes">
+        <button class="btn btn-success mb-2">Confirmer</button>
+      </div>
+    </div>
+  </div>
+</div>

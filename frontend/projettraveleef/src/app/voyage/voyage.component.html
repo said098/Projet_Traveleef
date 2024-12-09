@@ -1,0 +1,42 @@
+<div class="reservation-container">
+  <h2>Liste des Réservations de Vols</h2>
+  <div *ngIf="vols.length > 0; else noData">
+    <table>
+      <thead>
+        <tr>
+          <th>Compagnie</th>
+          <th>Trajet</th>
+          <th>Date</th>
+          <th>Heure</th>
+          <th>Terminal</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let vol of vols; let i = index" [routerLink]="['/vol', i]" class="clickable-row">
+          <td>
+            <img
+              [src]="getLogoUrl(vol.compagnie)"
+              [alt]="'Logo de ' + vol.compagnie"
+              class="compagnie-logo"
+              (error)="onLogoError($event)"
+            />
+            {{ vol.compagnie }}
+          </td>
+          <td>{{ vol.trajet }}</td>
+          <td>
+            {{ vol.date | date: 'dd/MM/yyyy' }}
+            <img src="assets/images/calendrier.png" alt="Calendrier" class="icon" />
+          </td>
+          <td>
+            {{ vol.heure }}
+            <img src="assets/images/temps.png" alt="Heure" class="icon" />
+          </td>
+          <td>{{ vol.terminal }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <ng-template #noData>
+    <p class="no-data">Aucune réservation de vol disponible pour le moment.</p>
+  </ng-template>
+</div>

@@ -1,0 +1,58 @@
+<div class="details-container" *ngIf="vol; else notFound">
+ 
+  <div 
+    class="map-section" 
+    [style.backgroundImage]="'url(assets/images/map-placeholder.png)'"
+  >
+    <h2>{{ vol.trajet }}</h2>
+    <!-- <img 
+      *ngIf="vol.trajet" 
+      src="https://maps.googleapis.com/maps/api/staticmap?size=400x200&path=enc:{{ vol.mapPath }}&key=VOTRE_CLE_API" 
+      alt="Carte de vol" 
+      class="map-image" 
+    /> -->
+  </div>
+
+  
+  <div class="details-section">
+    <h3>Détails du Vol</h3>
+    <p><strong>Compagnie :</strong> {{ vol.compagnie }}</p>
+    <p><strong>Date :</strong> {{ vol.date | date: 'dd/MM/yyyy' }}</p>
+    <p><strong>Heure :</strong> {{ vol.heure }}</p>
+    <p><strong>Terminal :</strong> {{ vol.terminal }}</p>
+  </div>
+</div>
+
+
+<div class="carbon-info">
+  <div class="carbon-icon">
+    <img src="assets/images/LogoTraveleefgreen.png" alt="Icône empreinte carbone" />
+  </div>
+  <div class="carbon-text">
+    <h4>L'impact environnemental de votre voyage</h4>
+    <p>
+      Chaque vol contribue à l'<span>empreinte carbone</span>, un indicateur clé mesurant les émissions de <span>gaz à effet de serre</span> libérées dans l'atmosphère. Saviez-vous que les transports aériens représentent environ <span>2,5% des émissions mondiales de CO2</span> ? 
+      <br />
+      Réduire cette empreinte est essentiel pour lutter contre le <span>réchauffement climatique</span>. Optez pour des solutions comme la <span>compensation carbone</span> ou voyagez plus léger pour limiter l'impact de vos déplacements. Ensemble, nous pouvons préserver notre planète.
+    </p>
+  </div>
+</div>
+
+
+
+<div class="back-container">
+  <button class="back-button" (click)="goBack()">Retour</button>
+</div>
+
+
+<ng-template #notFound>
+  <div class="details-container">
+    <div class="details-section">
+      <h3>Vol non trouvé</h3>
+      <p>Le vol demandé n'existe pas ou a été supprimé.</p>
+      <div class="back-container">
+        <button class="back-button" (click)="goBack()">Retour à la liste</button>
+      </div>
+    </div>
+  </div>
+</ng-template>
