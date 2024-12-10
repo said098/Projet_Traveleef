@@ -1,54 +1,71 @@
-/* Header */
-.header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px 20px;
-  background-color: #d8e5c4; /* Couleur d'arrière-plan */
+/* Couleur personnalisée pour la navbar */
+.custom-navbar {
+  background-color: #d8e5c4; /* Couleur de fond */
   border-bottom: 2px solid #a0b78b; /* Ligne en bas */
 }
 
-/* Contenu principal */
-.header-content {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-}
-
-/* Logo */
-.logo img {
-  height: 50px; /* Ajustez la taille si nécessaire */
-  object-fit: contain;
-}
-
-/* Navigation */
-.nav {
-  margin-left: auto; /* Pousse la navigation vers la droite */
-}
-
-.nav ul {
-  display: flex;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  align-items: center;
-}
-
-.nav li {
-  margin-left: 20px; /* Espacement entre les éléments */
-}
-
-.nav a {
-  text-decoration: none;
-  color: #333; /* Couleur des liens */
+.custom-navbar .navbar-nav .nav-link {
+  color: #333; /* Couleur du texte */
   font-weight: bold;
-  font-size: 16px;
+  transition: color 0.3s ease;
 }
 
-/* Icône utilisateur */
-.nav-icon {
-  height: 30px; /* Taille de l'icône */
-  width: 30px;
-  object-fit: contain;
+.custom-navbar .navbar-nav .nav-link:hover {
+  color: #6b8e23; /* Couleur au survol */
+  text-decoration: none;
+}
+
+.custom-navbar .navbar-toggler {
+  background-color: #a0b78b; /* Couleur du bouton hamburger */
+  border: none;
+}
+
+.custom-navbar .navbar-toggler-icon {
+  background-color: #333;
+  width: 25px;
+  height: 3px;
+  display: block;
+  position: relative;
+}
+
+.custom-navbar .navbar-toggler-icon::before,
+.custom-navbar .navbar-toggler-icon::after {
+  content: '';
+  width: 25px;
+  height: 3px;
+  background-color: #333;
+  position: absolute;
+  left: 0;
+}
+
+.custom-navbar .navbar-toggler-icon::before {
+  top: -8px;
+}
+
+.custom-navbar .navbar-toggler-icon::after {
+  top: 8px;
+}
+/* Lien actif */
+.custom-navbar .navbar-nav .nav-link.active {
+  color: #fff;
+  background-color: #6b8e23;
+  border-radius: 4px;
+}
+
+/* Mode mobile (collapse) */
+@media (max-width: 768px) {
+  .custom-navbar {
+    background-color: #f4f9e9; /* Couleur différente pour mobile */
+  }
+
+  .custom-navbar .navbar-nav {
+    background-color: #d8e5c4; /* Fond des liens en mobile */
+    border-radius: 5px;
+    padding: 10px;
+  }
+
+  .custom-navbar .nav-link {
+    color: #333;
+    margin: 5px 0;
+  }
 }
