@@ -1,4 +1,90 @@
-<h1>Informations Personelles<h1>
+<div class="container mt-5">
+  <div class="card shadow-sm">
+    <div class="card-header text-center bg-success text-white">
+      <h2>Informations Personnelles</h2>
+    </div>
+    <div class="card-body">
+      <form>
+        <div class="mb-3 row">
+          <label for="nom" class="col-sm-4 col-form-label text-end">Nom</label>
+          <div class="col-sm-6 position-relative">
+            <input
+              type="text"
+              class="form-control"
+              id="nom"
+              [value]="user?.nom || ''"
+              readonly
+            />
+            <button
+              type="button"
+              class="btn btn-outline-secondary position-absolute top-50 end-0 translate-middle-y"
+              (click)="editUserInfo()"
+            >
+              <i class="bi bi-pencil"></i>
+            </button>
+          </div>
+        </div>
 
+        <div class="mb-3 row">
+          <label for="prenom" class="col-sm-4 col-form-label text-end">Prénom</label>
+          <div class="col-sm-6 position-relative">
+            <input
+              type="text"
+              class="form-control"
+              id="prenom"
+              [value]="user?.prenom || ''"
+              readonly
+            />
+            <button
+              type="button"
+              class="btn btn-outline-secondary position-absolute top-50 end-0 translate-middle-y"
+              (click)="editUserInfo()"
+            >
+              <i class="bi bi-pencil"></i>
+            </button>
+          </div>
+        </div>
 
-    
+        <div class="mb-3 row">
+          <label for="datenaissance" class="col-sm-4 col-form-label text-end">Date de Naissance</label>
+          <div class="col-sm-6 position-relative">
+            <input
+              type="text"
+              class="form-control"
+              id="datenaissance"
+              [value]="user?.datenaissance || ''"
+              readonly
+            />
+            <button
+              type="button"
+              class="btn btn-outline-secondary position-absolute top-50 end-0 translate-middle-y"
+              (click)="editUserInfo()"
+            >
+              <i class="bi bi-pencil"></i>
+            </button>
+          </div>
+        </div>
+
+        <div class="mb-3 row">
+          <label for="tel" class="col-sm-4 col-form-label text-end">Téléphone</label>
+          <div class="col-sm-6 position-relative">
+            <input
+              type="text"
+              class="form-control"
+              id="tel"
+              [value]="user?.tel || ''"
+              readonly
+            />
+            <button
+              type="button"
+              class="btn btn-outline-secondary position-absolute top-50 end-0 translate-middle-y"
+              (click)="editUserInfo()"
+            >
+              <i class="bi bi-pencil"></i>
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
