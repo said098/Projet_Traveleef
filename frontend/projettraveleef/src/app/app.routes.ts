@@ -4,13 +4,14 @@ import {PageAccueilComponent} from './layout/page-accueil/page-accueil.component
 import {PageProppsComponent} from './layout/page-propps/page-propps.component';
 import { VolDetailsComponent } from './vol-details/vol-details.component';
 
+import { AuthPageComponent } from './authentification/auth-page/auth-page.component';
 
 export const routes: Routes = [
   { path: '', component: PageAccueilComponent},
   { path: 'proprodetraveleff', component: PageProppsComponent},
   { path: 'voyage', component: VoyageComponent },
   { path: 'vol/:id', component: VolDetailsComponent },
-
+  { path: 'auth', component: AuthPageComponent }
 ];
 
 

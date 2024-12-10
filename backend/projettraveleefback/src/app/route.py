@@ -1,4 +1,5 @@
 from flask import Blueprint
+import src.app.controller as controller
 
 from .controller import (
     ping_pong,
@@ -11,21 +12,30 @@ from .controller import (
 
 route_bl = Blueprint('route_bl', __name__)
 
+
 @route_bl.get('/')
 def ping():
-    return ping_pong()
+    return controller.ping_pong()
 
 @route_bl.get('/get_users')
-def users():
-    return get_users()
+def get_users():
+    return controller.get_users()
 
 @route_bl.get('/connexion')
 def login():
-    return connexion()
+    return controller.connexion()
 
 @route_bl.post('/inscription')
 def register():
     return inscription()
+
+@route_bl.post('/inscription')
+def inscription():
+    return controller.inscription()
+
+@route_bl.route('/logout', methods=['POST'])
+def logout():
+    return controller.logout()
 
 @route_bl.post('/flight_emissions')
 def flight_emissions():

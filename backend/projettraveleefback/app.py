@@ -6,6 +6,7 @@ from backend.projettraveleefback.src.app.route import route_bl
 
 # from backend.projettraveleefback.src.app.route import route_bl
 
+
 app = Flask(__name__)
 CORS(app, supports_credentials=True)
 
