@@ -1,41 +1,33 @@
-/* Couleur personnalisée pour la navbar */
 .custom-navbar {
-  background-color: #d8e5c4; /* Couleur de fond */
-  border-bottom: 2px solid #a0b78b; /* Ligne en bas */
-}
-
-.custom-navbar .navbar-nav .nav-link {
-  color: #333; /* Couleur du texte */
-  font-weight: bold;
-  transition: color 0.3s ease;
-}
-
-.custom-navbar .navbar-nav .nav-link:hover {
-  color: #6b8e23; /* Couleur au survol */
-  text-decoration: none;
+  background-color: #d8e5c4;
+  border-bottom: 2px solid #a0b78b;
 }
 
 .custom-navbar .navbar-toggler {
-  background-color: #a0b78b; /* Couleur du bouton hamburger */
   border: none;
+  padding: 5px;
+  background-color: transparent;
 }
 
 .custom-navbar .navbar-toggler-icon {
-  background-color: #333;
-  width: 25px;
-  height: 3px;
-  display: block;
+  background-color: transparent;
+  display: inline-block;
   position: relative;
+  width: 30px;
+  height: 3px;
+  background-color: #333;
+  transition: all 0.3s ease;
 }
 
 .custom-navbar .navbar-toggler-icon::before,
 .custom-navbar .navbar-toggler-icon::after {
   content: '';
-  width: 25px;
-  height: 3px;
-  background-color: #333;
   position: absolute;
   left: 0;
+  width: 30px;
+  height: 3px;
+  background-color: #333;
+  transition: all 0.3s ease;
 }
 
 .custom-navbar .navbar-toggler-icon::before {
@@ -45,27 +37,10 @@
 .custom-navbar .navbar-toggler-icon::after {
   top: 8px;
 }
-/* Lien actif */
-.custom-navbar .navbar-nav .nav-link.active {
-  color: #fff;
+
+
+.custom-navbar .navbar-toggler:hover .navbar-toggler-icon,
+.custom-navbar .navbar-toggler:hover .navbar-toggler-icon::before,
+.custom-navbar .navbar-toggler:hover .navbar-toggler-icon::after {
   background-color: #6b8e23;
-  border-radius: 4px;
-}
-
-/* Mode mobile (collapse) */
-@media (max-width: 768px) {
-  .custom-navbar {
-    background-color: #f4f9e9; /* Couleur différente pour mobile */
-  }
-
-  .custom-navbar .navbar-nav {
-    background-color: #d8e5c4; /* Fond des liens en mobile */
-    border-radius: 5px;
-    padding: 10px;
-  }
-
-  .custom-navbar .nav-link {
-    color: #333;
-    margin: 5px 0;
-  }
 }
