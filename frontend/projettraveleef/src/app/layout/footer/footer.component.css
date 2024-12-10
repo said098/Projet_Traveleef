@@ -38,7 +38,26 @@
   width: 100%;
   background-color: #7d9561;
 }
-.resiaux{
+
+.partners {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 10px;
+}
+
+.partner-logo {
+  width: 60px;
+  height: auto;
+  object-fit: contain;
+  transition: transform 0.3s ease;
+}
+
+.partner-logo:hover {
+  transform: scale(1.1); /* Effet de zoom au survol */
+}
+
+.resiaux {
   background-color: #8ca96d;
   padding: 20px;
   border-radius: 10px;
