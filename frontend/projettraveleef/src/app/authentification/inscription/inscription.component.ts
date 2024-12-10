@@ -31,6 +31,9 @@ export class InscriptionComponent implements OnInit {
 
   ngOnInit(): void {
     this.form_inscription = this.fb.group({
+      prenom: ['', [Validators.required, Validators.pattern('^[a-zA-ZÀ-ÿ]+$')]], // Lettres uniquement
+      nom: ['', [Validators.required, Validators.pattern('^[a-zA-ZÀ-ÿ]+$')]], // Lettres uniquement
+      datenaissance: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.email]],
       tel: ['', [Validators.required, this.telValidator]],
       pwd: ['', [Validators.required]],
@@ -51,7 +54,8 @@ export class InscriptionComponent implements OnInit {
   }
 
   onSubmitForm(formGroup: FormGroup) {
-    this.authService.inscription(formGroup.value.email, formGroup.value.tel, formGroup.value.pwd_confirm).subscribe();
+    console.log("data ", formGroup.value.datenaissance)
+    this.authService.inscription(formGroup.value.prenom,formGroup.value.nom,formGroup.value.datenaissance, formGroup.value.email, formGroup.value.tel, formGroup.value.pwd_confirm).subscribe();
   }
 
 }
