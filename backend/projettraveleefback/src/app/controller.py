@@ -51,27 +51,37 @@ def connexion():
     set_refresh_cookies(resp, refresh_token)
     
     return resp, 200
-    
+
 def inscription():
     data = request.get_json()
+    prenom = data.get('prenom')
+    nom = data.get('nom')
+    datenaissance = data.get('datenaissance')
+    print("datenaissance",datenaissance)
+    print("prenom",prenom)
+    print("nom",nom)
     email = data.get('email')
     tel = data.get('tel')
     password = data.get('pwd_confirm')
-    
+
+    if not prenom:
+        return jsonify({'error': 'Missing prenom'}), 400
+    if not nom:
+        return jsonify({'error': 'Missing nom'}), 400
+    if not datenaissance:
+        return jsonify({'error': 'Missing datenaissance'}), 400
     if not email:
-        return jsonify('Missing email'), 400
-    
+        return jsonify({'error': 'Missing email'}), 400
     if not password:
-        return jsonify('Missing password'), 400
-    
+        return jsonify({'error': 'Missing password'}), 400
     if not tel:
-        return jsonify('Missing tel'), 400
-    
-    user = mappeur({'id': None, 'email': email, 'password': password, 'tel': tel}) 
-    
+        return jsonify({'error': 'Missing tel'}), 400
+
+    user = mappeur({'id': None,'prenom': prenom,'nom': nom,'datenaissance': datenaissance,'email': email,'password': password,'tel': tel})
+
     user.inscription()
-    
-    return jsonify('Inscription success'), 200
+
+    return jsonify({'message': 'Inscription réussie'}), 200
 
 
 
