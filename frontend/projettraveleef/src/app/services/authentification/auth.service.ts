@@ -12,16 +12,19 @@ export class AuthService {
 
   constructor(private http: HttpClient, private apiConfig: ApiConfigService, private router: Router, private cookieService: CookieService) { }
 
-  inscription(email: string, tel: number, pwd_confirm: string): Observable<any> {
+  inscription(prenom: string, nom: string, datenaissance: string, email: string, tel: number, pwd_confirm: string
+  ): Observable<any> {
     return this.http.post(
       this.apiConfig.getURL('/user/inscription'),
-      {
-        email: email,
-        tel: tel,
-        pwd_confirm: pwd_confirm
-      }
-    )
+      {prenom: prenom, nom: nom, datenaissance: datenaissance, email: email, tel: tel, pwd_confirm: pwd_confirm}
+    ).pipe(
+      tap(() => {
+        this.router.navigate(['/']);
+      })
+    );
   }
+
+
 
   connexion(id: string, password: string): Observable<any> {
     return this.http.get(
