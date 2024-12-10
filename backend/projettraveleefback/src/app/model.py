@@ -4,12 +4,14 @@ from bson import ObjectId
 
 class Utilisateur:
     
-    def __init__(self, id, email, tel, password):
+    def __init__(self, id, email, tel, password,prenom,nom,datenaissance):
         self._id = id if id else ObjectId()
         self.email = email,
         self.tel = tel
         self.password = password
-        
+        self.prenom = prenom
+        self.nom = nom
+        self.datenaissance = datenaissance
     
     def connexion(self):
         user = db.utilisateur.find_one({'email': self.email, 'password': self.password}) 
@@ -26,7 +28,7 @@ class Utilisateur:
             return 'Email already exists'
         
         
-        user = Utilisateur(None, self.email, self.tel, self.hash_pwd()) # email est une arry donc on prend le premier element
+        user = Utilisateur(None, self.email, self.tel, self.hash_pwd(),self.prenom,self.nom,self.datenaissance) # email est une arry donc on prend le premier element
         db.utilisateur.insert_one(user.__dict__)
         
         return 'User created'
