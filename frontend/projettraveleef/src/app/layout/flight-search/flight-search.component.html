@@ -1,0 +1,42 @@
+<h2>Recherche de Vols</h2>
+
+<form [formGroup]="searchForm" (ngSubmit)="onSearch()">
+  <div>
+    <label>Départ (departure_id)</label>
+    <input formControlName="departure_id" placeholder="ex: CDG,ORY">
+  </div>
+  <div>
+    <label>Arrivée (arrival_id)</label>
+    <input formControlName="arrival_id" placeholder="ex: LAX">
+  </div>
+  <div>
+    <label>Date aller (outbound_date)</label>
+    <input formControlName="outbound_date" type="date">
+  </div>
+  <div>
+    <label>Date retour (return_date)</label>
+    <input formControlName="return_date" type="date">
+  </div>
+  <div>
+    <label>Devise (currency)</label>
+    <input formControlName="currency" placeholder="ex: USD">
+  </div>
+  <div>
+    <label>Langue (hl)</label>
+    <input formControlName="hl" placeholder="ex: en">
+  </div>
+  <button type="submit">Rechercher</button>
+</form>
+
+<div *ngIf="errorMessage" style="color:red">
+  {{errorMessage}}
+</div>
+
+<div *ngIf="flights.length > 0">
+  <h3>Résultats :</h3>
+  <ul>
+    <li *ngFor="let flight of flights">
+      {{flight | json}}
+    </li>
+  </ul>
+</div>

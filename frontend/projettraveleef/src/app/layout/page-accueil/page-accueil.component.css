@@ -31,10 +31,12 @@
 .search button:hover {
   background-color: #3b4f33;
 }
+
 .bg-custom {
   background-color: #a0b78b;
   border-radius: 20px;
 }
+
 .filters {
   max-height: 100%;
   overflow-y: auto;
