@@ -1,33 +1,69 @@
 <div class="inscription-container">
-    <h1>Inscription</h1>
+  <h1>Inscription</h1>
 
-    <form [formGroup]="form_inscription" (ngSubmit)="onSubmitForm(form_inscription)" class="form">
-        <p-floatLabel class="float-label">
-          <input pInputText id="email" formControlName="email" required class="input"/>
-          <label for="Identifiant">Entrez votre email</label>
-        </p-floatLabel>
+  <form [formGroup]="form_inscription" (ngSubmit)="onSubmitForm(form_inscription)" class="form">
+    <!-- Nom -->
+    <p-floatLabel class="float-label">
+      <input pInputText id="nom" formControlName="nom" required class="input" />
+      <label for="nom">Entrez votre nom</label>
+    </p-floatLabel>
 
-        <p-floatLabel class="float-label">
-          <input pInputText id="tel" formControlName="tel" required class="input"/>
-          <label for="n°">Entrez votre n° de Téléphone</label>
-        </p-floatLabel>
+    <!-- Prénom -->
+    <p-floatLabel class="float-label">
+      <input pInputText id="prenom" formControlName="prenom" required class="input" />
+      <label for="prenom">Entrez votre prénom</label>
+    </p-floatLabel>
 
-        <p-floatLabel class="float-label">
-            <p-password id="password" formControlName="pwd" id="pwd" [toggleMask]="true" [feedback]="false" required class="input"></p-password>
-            <label for="pwd">Mot de passe</label>
-          </p-floatLabel>
+    <!-- Date de naissance -->
+    <p-floatLabel class="float-label">
+      <input type="date" id="datenaissance" formControlName="datenaissance" class="input" required />
+      <label for="datenaissance">Date de naissance</label>
+    </p-floatLabel>
 
-        <p-floatLabel class="float-label">
-            <p-password id="password" formControlName="pwd_confirm" id="pwd_confirm" [toggleMask]="true" [feedback]="false" required class="input"></p-password>
-            <label for="Mot de passe">Entrez votre mot de passe</label>
-        </p-floatLabel>
+    <!-- Email -->
+    <p-floatLabel class="float-label">
+      <input pInputText id="email" formControlName="email" required class="input" />
+      <label for="email">Entrez votre email</label>
+    </p-floatLabel>
 
-      <div id="button-container">
-        <button pButton type="submit" [outlined]="true" class="p-button-success">Inscription</button>
-      </div>
-    </form>
+    <!-- Téléphone -->
+    <p-floatLabel class="float-label">
+      <input pInputText id="tel" formControlName="tel" required class="input" />
+      <label for="tel">Entrez votre n° de téléphone</label>
+    </p-floatLabel>
 
-    <div class="button-group">
-      <p-button [label]="connexion_label" [link]="true" (click)="prev()" size="small"></p-button>
+    <!-- Mot de passe -->
+    <p-floatLabel class="float-label">
+      <p-password
+        id="password"
+        formControlName="pwd"
+        [toggleMask]="true"
+        [feedback]="false"
+        required
+        class="input"
+      ></p-password>
+      <label for="pwd">Mot de passe</label>
+    </p-floatLabel>
+
+    <!-- Confirmation du mot de passe -->
+    <p-floatLabel class="float-label">
+      <p-password
+        id="password_confirm"
+        formControlName="pwd_confirm"
+        [toggleMask]="true"
+        [feedback]="false"
+        required
+        class="input"
+      ></p-password>
+      <label for="pwd_confirm">Confirmez votre mot de passe</label>
+    </p-floatLabel>
+
+    <div id="button-container">
+      <button pButton type="submit" [outlined]="true" class="p-button-success">Inscription</button>
     </div>
+  </form>
+
+  <div class="button-group">
+    <p-button [label]="connexion_label" [link]="true" (click)="prev()" size="small"></p-button>
+  </div>
 </div>
