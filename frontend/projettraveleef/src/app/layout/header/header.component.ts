@@ -13,6 +13,10 @@ import { CommonModule } from '@angular/common';
   standalone: true,
 })
 export class HeaderComponent {
+  isMenuOpen = false;
+  showLogoutMenu = false;
+  isLoggedIn = false; // À remplacer par votre logique d'authentification
+  userPrenom = 'Utilisateur'; // Remplacez par le prénom de l'utilisateur authentifié
   constructor(private authService: AuthService) {}
 
   isAuthenticated(): boolean {
