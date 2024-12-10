@@ -3,37 +3,41 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormBuilder, FormGroup } from '@angular/forms';
 import { FlightsService } from '../../services/flights.service';
 
+interface AirportInfo {
+  id: string;
+  name: string;
+  time: string; // "YYYY-MM-DD HH:mm"
+}
+
+interface FlightSegment {
+  airline: string;
+  airline_logo: string;
+  airplane: string;
+  arrival_airport: AirportInfo;
+  departure_airport: AirportInfo;
+  duration: number; // durée en minutes
+  flight_number: string;
+}
+
+interface Itinerary {
+  airline_logo: string;
+  carbon_emissions: any;
+  price: number;
+  total_duration: number;
+  type: string; // "Round trip", etc.
+  flights: FlightSegment[];
+}
+
 @Component({
   selector: 'app-flight-search',
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule],
-  template: `
-    <form [formGroup]="searchForm" (ngSubmit)="onSearch()" class="d-flex flex-wrap align-items-center justify-content-center gap-2">
-      <input formControlName="departure_id" type="text" class="form-control w-auto" placeholder="Aéroport de départ (ex: CDG,ORY)">
-      <input formControlName="arrival_id" type="text" class="form-control w-auto" placeholder="Aéroport d'arrivée (ex: LAX)">
-      <input formControlName="outbound_date" type="date" class="form-control w-auto">
-      <input formControlName="return_date" type="date" class="form-control w-auto">
-      <input formControlName="currency" type="text" class="form-control w-auto" placeholder="Devise (ex: USD)">
-      <input formControlName="hl" type="text" class="form-control w-auto" placeholder="Langue (ex: en)">
-      <button type="submit" class="btn btn-success w-auto">Rechercher</button>
-    </form>
-
-    <div *ngIf="errorMessage" class="text-danger mt-3 text-center">{{ errorMessage }}</div>
-
-    <div *ngIf="flights.length > 0" class="mt-3">
-      <h3>Résultats :</h3>
-      <ul>
-        <li *ngFor="let flight of flights">
-          {{ flight | json }}
-        </li>
-      </ul>
-    </div>
-  `,
-  styleUrls: []
+  templateUrl: './flight-search.component.html',
+  styleUrls: ['./flight-search.component.css']
 })
 export class FlightSearchComponent {
   searchForm: FormGroup;
-  flights: any[] = [];
+  itineraries: Itinerary[] = [];
   errorMessage: string | null = null;
 
   constructor(
@@ -43,8 +47,8 @@ export class FlightSearchComponent {
     this.searchForm = this.fb.group({
       departure_id: ['CDG,ORY'],
       arrival_id: ['LAX'],
-      outbound_date: ['2024-12-20'],
-      return_date: ['2024-12-30'],
+      outbound_date: ['2024-12-26'],
+      return_date: ['2024-12-29'],
       currency: ['USD'],
       hl: ['en']
     });
@@ -54,7 +58,9 @@ export class FlightSearchComponent {
     const params = this.searchForm.value;
     this.flightsService.searchTrips(params).subscribe({
       next: (data) => {
-        this.flights = data.flights;
+        // On suppose que data.flights est le format reçu.
+        // On map directement les données dans itineraries (pas forcément besoin de transformation si déjà conforme).
+        this.itineraries = data.flights;
         this.errorMessage = null;
       },
       error: (err) => {
@@ -64,3 +70,4 @@ export class FlightSearchComponent {
     });
   }
 }
+

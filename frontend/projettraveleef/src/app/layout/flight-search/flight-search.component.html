@@ -1,42 +1,47 @@
-<h2>Recherche de Vols</h2>
-
-<form [formGroup]="searchForm" (ngSubmit)="onSearch()">
-  <div>
-    <label>Départ (departure_id)</label>
-    <input formControlName="departure_id" placeholder="ex: CDG,ORY">
-  </div>
-  <div>
-    <label>Arrivée (arrival_id)</label>
-    <input formControlName="arrival_id" placeholder="ex: LAX">
-  </div>
-  <div>
-    <label>Date aller (outbound_date)</label>
-    <input formControlName="outbound_date" type="date">
-  </div>
-  <div>
-    <label>Date retour (return_date)</label>
-    <input formControlName="return_date" type="date">
-  </div>
-  <div>
-    <label>Devise (currency)</label>
-    <input formControlName="currency" placeholder="ex: USD">
-  </div>
-  <div>
-    <label>Langue (hl)</label>
-    <input formControlName="hl" placeholder="ex: en">
-  </div>
-  <button type="submit">Rechercher</button>
+<form [formGroup]="searchForm" (ngSubmit)="onSearch()" class="d-flex flex-wrap align-items-center justify-content-center gap-2 mb-3">
+  <input formControlName="departure_id" type="text" class="form-control w-auto" placeholder="Aéroports départ (ex: CDG,ORY)">
+  <input formControlName="arrival_id" type="text" class="form-control w-auto" placeholder="Aéroport arrivée (ex: LAX)">
+  <input formControlName="outbound_date" type="date" class="form-control w-auto">
+  <input formControlName="return_date" type="date" class="form-control w-auto">
+  <input formControlName="currency" type="text" class="form-control w-auto" placeholder="Devise (ex: USD)">
+  <input formControlName="hl" type="text" class="form-control w-auto" placeholder="Langue (ex: en)">
+  <button type="submit" class="btn btn-success w-auto">Rechercher</button>
 </form>
 
-<div *ngIf="errorMessage" style="color:red">
-  {{errorMessage}}
-</div>
+<div *ngIf="errorMessage" class="text-danger mt-3 text-center">{{ errorMessage }}</div>
 
-<div *ngIf="flights.length > 0">
+<div *ngIf="itineraries.length > 0" class="mt-3 container">
   <h3>Résultats :</h3>
-  <ul>
-    <li *ngFor="let flight of flights">
-      {{flight | json}}
-    </li>
-  </ul>
+  <div class="row row-cols-1 row-cols-md-2 g-3">
+    <div class="col" *ngFor="let itinerary of itineraries">
+      <div class="card h-100 shadow-sm">
+        <div class="card-body">
+          <h5 class="card-title d-flex align-items-center gap-2">
+            <img [src]="itinerary.airline_logo" alt="Airline Logo" width="50" class="img-fluid rounded">
+            {{ itinerary.type }} - {{ itinerary.price }} {{ searchForm.value.currency }}
+          </h5>
+          <p class="card-text mb-2"><strong>Durée totale : </strong>{{ itinerary.total_duration }} min</p>
+
+          <div class="flight-segments">
+            <div class="border-top pt-2" *ngFor="let flight of itinerary.flights">
+              <div class="d-flex align-items-center gap-2 mb-2">
+                <img [src]="flight.airline_logo" alt="Airline Logo" width="40" class="img-fluid rounded">
+                <strong>{{ flight.airline }} - {{ flight.flight_number }}</strong>
+              </div>
+              <p class="mb-1"><strong>Avion :</strong> {{ flight.airplane }}</p>
+              <p class="mb-1">
+                <strong>Départ :</strong> {{ flight.departure_airport.name }} ({{ flight.departure_airport.id }})
+                le {{ flight.departure_airport.time }}
+              </p>
+              <p class="mb-1">
+                <strong>Arrivée :</strong> {{ flight.arrival_airport.name }} ({{ flight.arrival_airport.id }})
+                le {{ flight.arrival_airport.time }}
+              </p>
+              <p class="mb-1"><strong>Durée du segment :</strong> {{ flight.duration }} min</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
