@@ -3,6 +3,7 @@ from flask_jwt_extended import jwt_required, get_jwt_identity, create_access_tok
 from bson.json_util import dumps
 from src.utils.database import db
 from src.utils.mappers.utilisateur_mappeur import mappeur
+from bson.objectid import ObjectId
 
 import base64
 
@@ -92,3 +93,26 @@ def logout():
 
 
 
+
+def infoUser():
+    user_id = get_jwt_identity()  
+    user = db.utilisateur.find_one({'_id': ObjectId(user_id)})
+    if not user:
+        return jsonify({'error': 'User not found'}), 404
+    user.pop('password', None)
+    user['_id'] = str(user['_id'])  
+
+    return jsonify(user), 200
+
+
+def update_user():
+    user_id = get_jwt_identity()
+    data = request.json
+    update_fields = {
+        'nom': data.get('nom'),
+        'prenom': data.get('prenom'),
+        'datenaissance': data.get('datenaissance'),
+        'tel': data.get('tel')
+    }
+    db.utilisateur.update_one({'_id': ObjectId(user_id)}, {'$set': update_fields})
+    return jsonify({'message': 'Informations mises à jour avec succès'}), 200
