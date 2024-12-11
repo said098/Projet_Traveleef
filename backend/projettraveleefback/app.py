@@ -2,9 +2,9 @@ from flask import Flask
 from flask_cors import CORS
 from flask_jwt_extended import JWTManager
 
-from backend.projettraveleefback.src.app.route import route_bl
+from src.app.route import route_bl
 
-# from backend.projettraveleefback.src.app.route import route_bl
+#from backend.projettraveleefback.src.app.route import route_bl
 
 
 app = Flask(__name__)

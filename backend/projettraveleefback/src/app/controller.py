@@ -1,7 +1,7 @@
 from flask import jsonify, Blueprint, make_response, request
 from flask_jwt_extended import jwt_required, get_jwt_identity, create_access_token, create_refresh_token, set_access_cookies, set_refresh_cookies, unset_jwt_cookies
-from backend.projettraveleefback.src.utils.database import db
-from backend.projettraveleefback.src.utils.mappers.utilisateur_mappeur import mappeur
+from src.utils.database import db
+from src.utils.mappers.utilisateur_mappeur import mappeur
 import requests
 from flask import jsonify, request
 from datetime import datetime
