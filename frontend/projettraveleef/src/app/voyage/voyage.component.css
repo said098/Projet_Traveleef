@@ -1,3 +1,22 @@
+
+.header-section h1 {
+  font-size: 28px;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.header-description {
+  font-size: 16px;
+  color: #666;
+}
+
+.header-image {
+  width: 80%;
+  border-radius: 10px;
+  margin-top: 20px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
 .reservation-container {
   font-family: 'Arial', sans-serif;
   background: linear-gradient(to bottom, #f0fdf0, #e6f5e6); 
@@ -107,3 +126,41 @@ table tr.clickable-row:hover {
     font-size: 20px;
   }
 }
+
+
+.header-section {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+
+.additional-info {
+  margin-top: 40px;
+}
+
+.additional-info h3 {
+  color: #2e7d32;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.info-card {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  background-color: #f4f8f4;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.info-icon {
+  width: 40px;
+  height: auto;
+  margin-right: 15px;
+}
+
+
+
+
+

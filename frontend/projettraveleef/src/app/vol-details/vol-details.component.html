@@ -1,16 +1,7 @@
 <div class="details-container" *ngIf="vol; else notFound">
- 
-  <div 
-    class="map-section" 
-    [style.backgroundImage]="'url(assets/images/map-placeholder.png)'"
-  >
+  <div class="map-section">
     <h2>{{ vol.trajet }}</h2>
-    <!-- <img 
-      *ngIf="vol.trajet" 
-      src="https://maps.googleapis.com/maps/api/staticmap?size=400x200&path=enc:{{ vol.mapPath }}&key=VOTRE_CLE_API" 
-      alt="Carte de vol" 
-      class="map-image" 
-    /> -->
+    <div class="map-container"></div> <!-- Conteneur de la carte -->
   </div>
 
   

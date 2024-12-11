@@ -1,200 +1,167 @@
+/* Import Leaflet styles */
+@import 'leaflet/dist/leaflet.css';
+
 body {
-    font-family: 'Arial', sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #ffffff; 
-    color: #333333;
-  }
-  
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #ffffff;
+  color: #333;
+}
 
+/* Container principal */
+.details-container {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 40px auto;
+  max-width: 1200px;
+  border-radius: 15px;
+  background-color: #f5f5f5;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  animation: fadeIn 0.8s ease-in-out;
+}
+
+/* Section de la carte */
+.map-section {
+  flex: 1;
+  min-width: 300px;
+  padding: 20px;
+  text-align: center;
+  background-color: #ffffff;
+}
+
+.map-section h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+  color: #228b22;
+}
+
+.map-container {
+  height: 300px;
+  width: 100%;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Section des détails */
+.details-section {
+  flex: 1;
+  min-width: 300px;
+  padding: 30px;
+  background-color: #ffffff;
+  color: #333;
+  border-left: 3px solid #228b22;
+}
+
+.details-section h3 {
+  font-size: 22px;
+  margin-bottom: 20px;
+  color: #228b22;
+  border-bottom: 2px solid #32cd32;
+  padding-bottom: 5px;
+}
+
+.details-section p {
+  margin: 10px 0;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+.details-section strong {
+  color: #555;
+}
+
+/* Bouton Retour */
+.back-container {
+  text-align: center;
+  margin-top: 30px;
+}
+
+.back-button {
+  background: linear-gradient(to right, #32cd32, #228b22);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+.back-button:hover {
+  background: linear-gradient(to right, #228b22, #32cd32);
+  transform: scale(1.05);
+}
+
+/* Info empreinte carbone */
+.carbon-info {
+  display: flex;
+  align-items: flex-start;
+  background: linear-gradient(to right, #d9f2d9, #b6e6b6);
+  padding: 20px;
+  border-radius: 15px;
+  margin: 30px auto;
+  max-width: 1000px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.carbon-icon img {
+  width: 60px;
+  height: 60px;
+  margin-right: 20px;
+}
+
+.carbon-text h4 {
+  font-size: 20px;
+  font-weight: bold;
+  color: #228b22;
+  margin-bottom: 10px;
+}
+
+.carbon-text p {
+  font-size: 16px;
+  line-height: 1.6;
+  color: #444;
+  text-align: justify;
+}
+
+.carbon-text p span {
+  color: #228b22;
+  font-weight: bold;
+}
+
+/* Responsivité */
+@media screen and (max-width: 768px) {
   .details-container {
-    display: flex;
-    flex-wrap: wrap;
-    margin: 40px auto;
-    max-width: 1200px;
-    border-radius: 15px;
-    background-color: #f5f5f5; 
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); 
-    overflow: hidden;
+    flex-direction: column;
   }
-  
 
-  .map-section {
-    flex: 1;
-    min-width: 300px;
-    padding: 20px;
-  
-    background-size: cover;
-    background-position: center;
-    color: #ffffff;
-    text-align: center;
-  }
-  
-  .map-section h2 {
-    font-size: 24px;
-    margin-bottom: 20px;
-    color: #000000;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-  }
-  
-  .map-section .map-image {
-    width: 100%;
-    max-width: 350px;
-    border-radius: 10px;
-    margin-top: 20px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-  }
-  
-  
   .details-section {
-    flex: 1;
-    min-width: 300px;
-    padding: 30px;
-    background: #ffffff; 
-    color: #333333;
-    border-left: 3px solid #228b22; 
+    border-left: none;
+    border-top: 3px solid #228b22;
   }
-  
-  .details-section h3 {
-    font-size: 22px;
-    margin-bottom: 20px;
-    color: linear-gradient(to right, #32cd32, #228b22);;
-    border-bottom: 2px solid #32cd32; 
-    padding-bottom: 5px;
-  }
-  
-  .details-section p {
-    margin: 10px 0;
-    font-size: 18px;
-    line-height: 1.6;
-  }
-  
-  .details-section strong {
-    color: #555555;
-  }
-  
 
-  .back-container {
-    text-align: center;
-    margin-top: 30px;
-  }
-  
-  .back-button {
-    background: linear-gradient(to right, #32cd32, #228b22);
-    color: white;
-    border: none;
-    padding: 12px 25px;
-    font-size: 16px;
-    font-weight: bold;
-    border-radius: 25px;
-    cursor: pointer;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-    transition: all 0.3s ease-in-out;
-  }
-  
-  .back-button:hover {
-    background: linear-gradient(to right, #228b22, #32cd32);
-    transform: scale(1.05);
-  }
-  
-
-  .details-container {
-    animation: fadeIn 0.8s ease-in-out;
-  }
-  
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-  
-  @media screen and (max-width: 768px) {
-    .details-container {
-      flex-direction: column;
-    }
-  
-    .details-section {
-      border-left: none;
-      border-top: 3px solid #e8f5fe;
-    }
-  }
-  
   .carbon-info {
-    display: flex;
-    align-items: flex-start;
-    background: linear-gradient(to right, #d9f2d9, #b6e6b6); 
-    padding: 20px;
-    border-radius: 15px;
-    margin: 30px auto;
-    max-width: 1000px;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-    animation: fadeIn 1s ease-in-out;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
   }
-  
+
   .carbon-icon img {
-    width: 60px; 
-    height: 60px;
-    margin-right: 20px;
-    animation: pulse 1.5s infinite;
+    margin: 0 0 15px 0;
   }
-  
-  .carbon-text h4 {
-    font-size: 20px;
-    font-weight: bold;
-    color: #2f6b2f; 
-    margin-bottom: 10px;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2); 
-  }
-  
-  .carbon-text p {
-    margin: 0;
-    font-size: 16px;
-    line-height: 1.6;
-    color: #444;
-    text-align: justify; 
-  }
-  
-  .carbon-text p span {
-    color: #228b22; 
-    font-weight: bold;
-  }
+}
 
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
+/* Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
   }
-  
-
-  @keyframes pulse {
-    0%, 100% {
-      transform: scale(1);
-    }
-    50% {
-      transform: scale(1.1);
-    }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
-  
- 
-  @media (max-width: 768px) {
-    .carbon-info {
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-    }
-  
-    .carbon-icon img {
-      margin: 0 0 15px 0;
-    }
-  }
-  
+}

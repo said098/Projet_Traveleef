@@ -1,35 +1,42 @@
 [
-    {
-      "id": 0,
-      "compagnie": "Air France",
-      "trajet": "Paris - Londres",
-      "date": "2024-12-15",
-      "heure": "08:30",
-      "terminal": "T2"
-    },
-    {
-      "id": 1,
-      "compagnie": "British Airways",
-      "trajet": "Paris - New York",
-      "date": "2024-12-20",
-      "heure": "14:15",
-      "terminal": "T1"
-    },
-    {
-      "id": 2,
-      "compagnie": "Lufthansa",
-      "trajet": "Berlin - Paris",
-      "date": "2024-12-25",
-      "heure": "10:00",
-      "terminal": "T3"
-    },
-    {
-      "id": 3,
-      "compagnie": "Norwegian Air",
-      "trajet": "Oslo - Paris",
-      "date": "2024-12-30",
-      "heure": "18:45",
-      "terminal": "T4"
-    }
-  ]
-  
+  {
+    "id": 0,
+    "compagnie": "Air France",
+    "trajet": "Paris - Londres",
+    "date": "2024-12-15",
+    "heure": "08:30",
+    "terminal": "T2",
+    "latitude": 48.8566,
+    "longitude": 2.3522 
+  },
+  {
+    "id": 1,
+    "compagnie": "British Airways",
+    "trajet": "Paris - New York",
+    "date": "2024-12-20",
+    "heure": "14:15",
+    "terminal": "T1",
+    "latitude": 40.7128,
+    "longitude": -74.0060  
+  },
+  {
+    "id": 2,
+    "compagnie": "Lufthansa",
+    "trajet": "Berlin - Paris",
+    "date": "2024-12-25",
+    "heure": "10:00",
+    "terminal": "T3",
+    "latitude": 52.52,
+    "longitude": 13.4050  
+  },
+  {
+    "id": 3,
+    "compagnie": "Norwegian Air",
+    "trajet": "Oslo - Paris",
+    "date": "2024-12-30",
+    "heure": "18:45",
+    "terminal": "T4",
+    "latitude": 59.9139,
+    "longitude": 10.7522  
+  }
+]

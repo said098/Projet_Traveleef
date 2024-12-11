@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { VolService } from '../services/vol.service';
 
+
 export interface Vol {
   id: number;
   compagnie: string;
@@ -10,6 +11,8 @@ export interface Vol {
   date: string;
   heure: string;
   terminal: string;
+  latitude: number; 
+  longitude: number; 
 }
 
 @Component({

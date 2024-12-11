@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class VolService {
-  private jsonUrl = 'assets/data/vols.json'; 
+  private  readonly jsonUrl = 'assets/data/vols.json'; 
 
   constructor(private http: HttpClient) {}
 
