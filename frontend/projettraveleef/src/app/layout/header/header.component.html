@@ -33,10 +33,10 @@
               <a routerLink="/voyage" class="nav-link">Voyage</a>
             </li>
             <li class="nav-item">
-              <a routerLink="/infoPers" class="nav-link">Information Personnelle</a>
+              <a (click)="goToInfoPers()" class="nav-link" style="cursor: pointer;">Information Personnelle</a>
             </li>
             <li class="nav-item">
-              <button (click)="logout()" class="btn btn-outline-danger">Déconnexion</button>
+              <button (click)="logout()" class="btn ">Déconnexion</button>
             </li>
           </ng-container>
 

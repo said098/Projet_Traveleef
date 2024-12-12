@@ -1,0 +1,19 @@
+.card-header {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.form-control[readonly] {
+  background-color: #f9f9f9;
+  cursor: not-allowed;
+}
+
+.bi-pencil {
+  font-size: 1rem;
+}
+
+.position-relative .btn {
+  border: none;
+  background-color: transparent;
+  color: #6c757d;
+}

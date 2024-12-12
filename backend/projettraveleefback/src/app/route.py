@@ -1,5 +1,7 @@
 from flask import Blueprint
 import src.app.controller as controller
+from flask_jwt_extended import jwt_required, get_jwt_identity
+from bson import ObjectId
 
 from .controller import (
     ping_pong,
@@ -11,6 +13,7 @@ from .controller import (
 )
 
 route_bl = Blueprint('route_bl', __name__)
+
 
 
 @route_bl.get('/')
@@ -44,3 +47,27 @@ def flight_emissions():
 @route_bl.post('/search_trips')
 def search_for_trips():
     return search_trips()
+
+@route_bl.get('/route')
+@jwt_required()
+def recouperUserId():
+    id = get_jwt_identity()
+    print("id de ", id)
+    return jsonify({'id': id, 'message': f'Bonjour utilisateur avec ID : {id}'}), 200
+
+
+
+
+@route_bl.route('/infoPerso', methods=['GET'])
+@jwt_required()
+def infoUser():
+    print("dans route infoPerson")
+    return controller.infoUser()
+
+
+
+@route_bl.route('/update', methods=['PUT'])
+@jwt_required()
+def update_user():
+    print("dans route update")
+    return controller.update_user()

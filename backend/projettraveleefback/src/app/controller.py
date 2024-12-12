@@ -2,6 +2,7 @@ from flask import jsonify, Blueprint, make_response, request
 from flask_jwt_extended import jwt_required, get_jwt_identity, create_access_token, create_refresh_token, set_access_cookies, set_refresh_cookies, unset_jwt_cookies
 from src.utils.database import db
 from src.utils.mappers.utilisateur_mappeur import mappeur
+from bson.objectid import ObjectId
 import requests
 from flask import jsonify, request
 from datetime import datetime
@@ -87,8 +88,10 @@ def inscription():
     user = mappeur({'id': None,'prenom': prenom,'nom': nom,'datenaissance': datenaissance,'email': email,'password': password,'tel': tel})
 
     user.inscription()
-    
-    return jsonify('Inscription success')
+
+    return jsonify({'message': 'Inscription réussie'}), 200
+
+
 
 def logout():
     response = make_response(jsonify({"message": "Déconnexion réussie"}), 200)
@@ -179,3 +182,27 @@ def search_trips():
 
 
     return jsonify({"flights": flights})
+
+
+def infoUser():
+    user_id = get_jwt_identity()
+    user = db.utilisateur.find_one({'_id': ObjectId(user_id)})
+    if not user:
+        return jsonify({'error': 'User not found'}), 404
+    user.pop('password', None)
+    user['_id'] = str(user['_id'])
+
+    return jsonify(user), 200
+
+
+def update_user():
+    user_id = get_jwt_identity()
+    data = request.json
+    update_fields = {
+        'nom': data.get('nom'),
+        'prenom': data.get('prenom'),
+        'datenaissance': data.get('datenaissance'),
+        'tel': data.get('tel')
+    }
+    db.utilisateur.update_one({'_id': ObjectId(user_id)}, {'$set': update_fields})
+    return jsonify({'message': 'Informations mises à jour avec succès'}), 200
