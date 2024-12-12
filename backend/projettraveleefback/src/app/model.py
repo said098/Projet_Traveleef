@@ -1,4 +1,4 @@
-from backend.projettraveleefback.src.utils.database import db
+from src.utils.database import db
 from flask_bcrypt import Bcrypt
 from bson import ObjectId
 
