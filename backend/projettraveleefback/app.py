@@ -1,7 +1,7 @@
-from flask import Flask
+from flask import Flask, jsonify
 from flask_cors import CORS
 from flask_jwt_extended import JWTManager
-
+from os import getenv
 from src.app.route import route_bl
 
 #from backend.projettraveleefback.src.app.route import route_bl
