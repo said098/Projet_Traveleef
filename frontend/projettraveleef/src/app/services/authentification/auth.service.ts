@@ -51,11 +51,8 @@ export class AuthService {
   logout(): Observable<any> {
     return this.http.post(this.apiConfig.getURL('/user/logout'), {}).pipe(
       tap(() => {
-        // Supprimer les cookies ou autres états locaux d'authentification
         this.cookieService.delete('csrf_access_token');
-        this.cookieService.deleteAll(); // Optionnel si plusieurs cookies doivent être supprimés
-
-        // Rediriger l'utilisateur vers la page d'authentification
+        this.cookieService.deleteAll();
         this.router.navigate(['/']);
       })
     );
@@ -66,25 +63,25 @@ export class AuthService {
       withCredentials: true,
     }).pipe(
       tap(response => {
-        console.log('Réponse complète depuis le backend :', response); // Ajout de ce log
+        console.log('Réponse complète depuis le backend :', response);
         console.log('ID utilisateur récupéré depuis le backend :', response.id);
       }),
       first(),
-      map(response => response.id || null), // Assurez-vous que `id` est utilisé
+      map(response => response.id || null),
       catchError(err => {
         console.error('Erreur lors de la récupération de l\'ID utilisateur :', err);
-        return of(null); // Retourne `null` en cas d'erreur
+        return of(null);
       })
     );
   }
   getUserInfo(): Observable<any> {
     return this.http.get(this.apiConfig.getURL('/user/infoPerso'), {
-      withCredentials: true, // Inclut les cookies dans la requête
+      withCredentials: true,
     }).pipe(
       tap(data => console.log('Données utilisateur reçues :', data)),
       catchError(err => {
         console.error('Erreur lors de la récupération des informations utilisateur :', err);
-        return throwError(err); // Relance l'erreur pour que le composant puisse la gérer
+        return throwError(err);
       })
     );
   }

@@ -12,7 +12,7 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./user-info.component.css']
 })
 export class UserInfoComponent implements OnInit {
-  user: any; // Stocker les informations de l'utilisateur
+  user: any;
 
   constructor(private authService: AuthService, private router: Router) {}
 
@@ -34,7 +34,7 @@ export class UserInfoComponent implements OnInit {
 
   editUserInfo(): void {
     if (this.user && this.user._id) {
-      this.router.navigate([`/infoPers/edit/${this.user._id}`]); // Utilisation correcte de _id
+      this.router.navigate([`/infoPers/edit/${this.user._id}`]);
     } else {
       console.error('Impossible de rediriger : ID utilisateur manquant');
     }

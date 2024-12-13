@@ -27,7 +27,6 @@
             <a routerLink="/" class="nav-link">Accueil</a>
           </li>
 
-          <!-- Liens affichés si l'utilisateur est authentifié -->
           <ng-container *ngIf="isAuthenticated(); else notAuthenticated">
             <li class="nav-item">
               <a routerLink="/voyage" class="nav-link">Voyage</a>
@@ -39,8 +38,6 @@
               <button (click)="logout()" class="btn ">Déconnexion</button>
             </li>
           </ng-container>
-
-          <!-- Lien affiché si l'utilisateur n'est pas authentifié -->
           <ng-template #notAuthenticated>
             <li class="nav-item">
               <a routerLink="/auth" class="nav-link">
