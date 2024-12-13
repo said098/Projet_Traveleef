@@ -30,29 +30,8 @@ Cette page devrait afficher l'écran d'accueil de Traveleef.
 # Structure du projet
 Le projet est organisé comme suit :
 Projet_Traveleef/
-│
-├── .env                      # Variables d'environnement pour le projet
-├── .gitignore                # Fichiers ignorés par Git
-├── docker-compose.yml        # Fichier de configuration Docker Compose
-├── README.md                 # Documentation du projet
-│
-├── frontend/                 # Répertoire du frontend Angular
-│   ├── dockerfile            # Dockerfile pour construire l'image du frontend
-│   ├── projettraveleef/      # Code source du frontend Angular
-│   │   ├── src/              # Code principal de l'application Angular
-│   │   ├── angular.json      # Configuration Angular
-│   │   ├── package.json      # Dépendances du frontend
-│   │   └── proxy.conf.json   # Configuration du proxy Angular
-│   └── nginx/                # Configuration Nginx pour le frontend
-│
-├── backend/                  # Répertoire du backend Flask
-│   ├── dockerfile            # Dockerfile pour construire l'image du backend
-│   ├── requirements.txt      # Dépendances Python pour le backend
-│   ├── projettraveleefback/  # Code source du backend Flask
-│   │   ├── app.py            # Point d'entrée du backend Flask
-│   │   └── src/              # Modules et logique du backend
-│
-└── .vscode/                  # Configuration VSCode (facultatif)
+![image](https://github.com/user-attachments/assets/40461115-6cf3-48cb-b8b7-fce103a53afe)
+
 
 
 
