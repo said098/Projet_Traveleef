@@ -1,0 +1,60 @@
+<div class="container mt-5">
+  <div class="card shadow">
+    <div class="card-header text-center bg-success text-white position-relative">
+      <h4 class="mb-0">Informations Personnelles</h4>
+      <button type="button" class="btn-close position-absolute top-50 end-0 translate-middle-y me-3" aria-label="Close" (click)="cancelEdit()"></button>
+    </div>
+    <div class="card-body">
+      <form [formGroup]="userForm" (ngSubmit)="updateUserInfo()">
+        <!-- Champ Nom -->
+        <div class="mb-3">
+          <label for="nom" class="form-label fw-bold">Nom</label>
+          <input
+            id="nom"
+            type="text"
+            formControlName="nom"
+            class="form-control"
+            placeholder="Entrez votre nom"
+          />
+        </div>
+        <!-- Champ Prénom -->
+        <div class="mb-3">
+          <label for="prenom" class="form-label fw-bold">Prénom</label>
+          <input
+            id="prenom"
+            type="text"
+            formControlName="prenom"
+            class="form-control"
+            placeholder="Entrez votre prénom"
+          />
+        </div>
+        <!-- Champ Date de Naissance -->
+        <div class="mb-3">
+          <label for="datenaissance" class="form-label fw-bold">Date de Naissance</label>
+          <input
+            id="datenaissance"
+            type="date"
+            formControlName="datenaissance"
+            class="form-control"
+          />
+        </div>
+        <!-- Champ Téléphone -->
+        <div class="mb-3">
+          <label for="tel" class="form-label fw-bold">Téléphone</label>
+          <input
+            id="tel"
+            type="text"
+            formControlName="tel"
+            class="form-control"
+            placeholder="Entrez votre numéro de téléphone"
+          />
+        </div>
+        <!-- Boutons -->
+        <div class="d-flex justify-content-between">
+          <button type="button" class="btn btn-outline-danger" (click)="cancelEdit()">Annuler</button>
+          <button type="submit" class="btn btn-success">Sauvegarder</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

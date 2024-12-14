@@ -1,4 +1,4 @@
-from backend.projettraveleefback.src.app.model import Utilisateur
+from src.app.model import Utilisateur
 
 
 def mappeur(utilisateur_json):
