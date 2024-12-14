@@ -1,73 +1,64 @@
 <div class="reservation-container">
   <header class="header-section">
-    <h1>Gestion des Réservations de Vols</h1>
+    <h1>Gestion des Réservations</h1>
     <p class="header-description">
-      Consultez vos réservations de vols, suivez vos trajets, et restez à jour grâce à notre tableau interactif. Simplifiez votre expérience de voyage !
+      Consultez vos réservations, suivez vos trajets, et restez à jour grâce à notre tableau interactif.
     </p>
     <img src="assets/images/voyages-2.jpg" alt="Bannière voyage" class="header-image" />
   </header>
 
   <section class="reservation-list">
-    <h2>Liste des Réservations de Vols</h2>
-    <div *ngIf="vols.length > 0; else noData">
+    <h2>Liste des Réservations</h2>
+    <div *ngIf="trajets.length > 0; else noData">
       <table>
         <thead>
           <tr>
+            <th>Type</th>
             <th>Compagnie</th>
             <th>Trajet</th>
             <th>Date</th>
             <th>Heure</th>
-            <th>Terminal</th>
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let vol of vols; let i = index" [routerLink]="['/vol', i]" class="clickable-row">
-            <td>
-              <img
-                [src]="getLogoUrl(vol.compagnie)"
-                [alt]="'Logo de ' + vol.compagnie"
-                class="compagnie-logo"
-                (error)="onLogoError($event)"
-              />
-              {{ vol.compagnie }}
+          <tr *ngFor="let trajet of trajets; let i = index" class="clickable-row" [routerLink]="['/trajet', i]">
+            <td>{{ trajet.type }}</td>
+            <td *ngIf="trajet.type !== 'Multimodal'">
+              <img [src]="getLogoUrl(trajet.compagnie)" [alt]="'Logo de ' + trajet.compagnie" class="compagnie-logo" (error)="onLogoError($event)" />
+              {{ trajet.compagnie }}
             </td>
-            <td>{{ vol.trajet }}</td>
+            <td *ngIf="trajet.type === 'Multimodal'">-</td>
+            <td>{{ trajet.trajet }}</td>
             <td>
-              {{ vol.date | date: 'dd/MM/yyyy' }}
+              {{ trajet.date | date: 'dd/MM/yyyy' }}
               <img src="assets/images/calendrier.png" alt="Calendrier" class="icon" />
             </td>
             <td>
-              {{ vol.heure }}
-              <img src="assets/images/temps.png" alt="Heure" class="icon" />
+              {{ trajet.heure || 'N/A' }}
+              <img *ngIf="trajet.heure" src="assets/images/temps.png" alt="Heure" class="icon" />
             </td>
-            <td>{{ vol.terminal }}</td>
           </tr>
         </tbody>
       </table>
     </div>
     <ng-template #noData>
-      <p class="no-data">Aucune réservation de vol disponible pour le moment.</p>
+      <p class="no-data">Aucune réservation disponible pour le moment.</p>
     </ng-template>
   </section>
 
   <section class="additional-info">
     <h3>Informations Utiles</h3>
     <div class="info-card">
-      <img src="assets/images/flight-safety.png" alt="Sécurité des vols" class="info-icon" />
-      <p>Pour toute assistance concernant vos réservations, contactez notre service clientèle 24h/24 et 7j/7.</p>
+      <img src="assets/images/flight-safety.png" alt="Sécurité" class="info-icon" />
+      <p>Pour toute assistance, contactez notre service clientèle 24h/24 et 7j/7.</p>
     </div>
     <div class="info-card">
-      <img src="assets/images/avion.png" alt="Voyage en avion" class="info-icon" />
-      <p>
-        Consultez régulièrement vos vols pour vérifier les horaires, les terminaux et d'éventuelles modifications.
-      </p>
+      <img src="assets/images/avion.png" alt="Voyage" class="info-icon" />
+      <p>Consultez régulièrement vos trajets pour vérifier les horaires et d'éventuelles modifications.</p>
     </div>
     <div class="info-card">
-      <img src="assets/images/remise-sur-le-prix.png" alt="Offres promotionnelles" class="info-icon" />
-      <p>
-        Découvrez nos offres spéciales sur les vols internationaux et profitez des meilleurs tarifs.
-      </p>
+      <img src="assets/images/remise-sur-le-prix.png" alt="Offres" class="info-icon" />
+      <p>Découvrez nos offres spéciales sur les voyages internationaux.</p>
     </div>
   </section>
-
 </div>

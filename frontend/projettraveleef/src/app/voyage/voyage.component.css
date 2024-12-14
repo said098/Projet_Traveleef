@@ -1,45 +1,79 @@
+/* Global Styles */
+body {
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f9f9f9;
+  color: #333;
+}
+
+/* Header Section */
+.header-section {
+  text-align: center;
+  margin-bottom: 30px;
+}
 
 .header-section h1 {
-  font-size: 28px;
-  color: #333;
+  font-size: 50px;
+  color: #2e7d32;
   margin-bottom: 10px;
 }
 
 .header-description {
-  font-size: 16px;
-  color: #666;
+  font-family: 'Roboto', sans-serif; 
+  font-size: 1.2rem; 
+  font-weight: 400; 
+  color: #333; 
+  line-height: 1.6; 
+  text-align: center; 
+  text-transform: capitalize; 
+  letter-spacing: 0.5px; 
+  padding: 10px 20px; 
+  background: linear-gradient(to right, #f0f8ff, #b0e0e6); 
+  border-radius: 8px; 
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); 
+  transition: all 0.3s ease-in-out; 
 }
+
+.header-description:hover {
+  color: #005f6a; 
+  background: linear-gradient(to right, #b0e0e6, #f0f8ff);
+  transform: scale(1.05); 
+}
+
 
 .header-image {
   width: 80%;
+  max-width: 600px;
   border-radius: 10px;
-  margin-top: 20px;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  margin: 0 auto;
+  display: block;
 }
 
+/* Reservation Container */
 .reservation-container {
-  font-family: 'Arial', sans-serif;
-  background: linear-gradient(to bottom, #f0fdf0, #e6f5e6); 
+  background: linear-gradient(to bottom, #f0fdf0, #e6f5e6);
   border-radius: 15px;
   padding: 30px;
   margin: 30px auto;
   max-width: 1200px;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15); 
-  animation: fadeIn 1s ease-in-out; 
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
 }
 
 h2 {
   text-align: center;
-  color: #2e7d32; 
+  color: #2e7d32;
   margin-bottom: 25px;
   font-size: 24px;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1); 
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
 }
 
+/* Table Styles */
 table {
   width: 100%;
   border-collapse: collapse;
-  background-color: #fff; 
+  background-color: #fff;
   border-radius: 10px;
   overflow: hidden;
   margin-top: 20px;
@@ -47,10 +81,9 @@ table {
 }
 
 table thead tr {
-  background: linear-gradient(to right, #4CAF50, #3e8e41); 
+  background: linear-gradient(to right, #4CAF50, #3e8e41);
   color: white;
   text-align: left;
-  font-weight: bold;
 }
 
 table th, table td {
@@ -61,8 +94,8 @@ table th, table td {
 }
 
 table tr:hover {
-  background-color: #f1f1f1; 
-  transition: all 0.3s ease;
+  background-color: #f1f1f1;
+  transition: background-color 0.3s ease;
 }
 
 table tr.clickable-row:hover {
@@ -71,15 +104,17 @@ table tr.clickable-row:hover {
   cursor: pointer;
 }
 
+/* Compagnie Logo */
 .compagnie-logo {
-  width: 40px;
+  width: 40px; 
   height: auto;
   vertical-align: middle;
   margin-right: 10px;
-  border-radius: 5px; 
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
+/* Icons */
 .icon {
   width: 18px;
   height: 18px;
@@ -87,6 +122,7 @@ table tr.clickable-row:hover {
   vertical-align: middle;
 }
 
+/* No Data Message */
 .no-data {
   text-align: center;
   color: #666;
@@ -94,46 +130,7 @@ table tr.clickable-row:hover {
   margin-top: 20px;
 }
 
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes scaleIn {
-  from {
-    opacity: 0;
-    transform: scale(0.95);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
-@media (max-width: 768px) {
-  table th, table td {
-    padding: 10px;
-    font-size: 14px;
-  }
-
-  h2 {
-    font-size: 20px;
-  }
-}
-
-
-.header-section {
-  text-align: center;
-  margin-bottom: 30px;
-}
-
-
+/* Additional Info Section */
 .additional-info {
   margin-top: 40px;
 }
@@ -160,7 +157,41 @@ table tr.clickable-row:hover {
   margin-right: 15px;
 }
 
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
 
+/* Responsive Design */
+@media (max-width: 768px) {
+  table th, table td {
+    padding: 10px;
+    font-size: 14px;
+  }
 
+  h2 {
+    font-size: 20px;
+  }
 
+  .header-image {
+    width: 100%;
+  }
+}
