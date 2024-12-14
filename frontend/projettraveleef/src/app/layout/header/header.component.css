@@ -1,0 +1,46 @@
+.custom-navbar {
+  background-color: #d8e5c4;
+  border-bottom: 2px solid #a0b78b;
+}
+
+.custom-navbar .navbar-toggler {
+  border: none;
+  padding: 5px;
+  background-color: transparent;
+}
+
+.custom-navbar .navbar-toggler-icon {
+  background-color: transparent;
+  display: inline-block;
+  position: relative;
+  width: 30px;
+  height: 3px;
+  background-color: #333;
+  transition: all 0.3s ease;
+}
+
+.custom-navbar .navbar-toggler-icon::before,
+.custom-navbar .navbar-toggler-icon::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  width: 30px;
+  height: 3px;
+  background-color: #333;
+  transition: all 0.3s ease;
+}
+
+.custom-navbar .navbar-toggler-icon::before {
+  top: -8px;
+}
+
+.custom-navbar .navbar-toggler-icon::after {
+  top: 8px;
+}
+
+
+.custom-navbar .navbar-toggler:hover .navbar-toggler-icon,
+.custom-navbar .navbar-toggler:hover .navbar-toggler-icon::before,
+.custom-navbar .navbar-toggler:hover .navbar-toggler-icon::after {
+  background-color: #6b8e23;
+}

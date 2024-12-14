@@ -1,0 +1,18 @@
+.card {
+  border: none;
+  border-radius: 10px;
+}
+
+.card-body {
+  background-color: #f7f7f7;
+  border-radius: 10px;
+}
+
+.flight-segments {
+  margin-top: 15px;
+}
+
+.flight-segments .border-top {
+  margin-top: 10px;
+  padding-top: 10px;
+}

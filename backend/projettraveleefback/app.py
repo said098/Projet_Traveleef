@@ -1,24 +1,30 @@
 from flask import Flask, jsonify
-from flask_sqlalchemy import SQLAlchemy
-import os
 from flask_cors import CORS
+from flask_jwt_extended import JWTManager
+from os import getenv
+from src.app.route import route_bl
+
+#from backend.projettraveleefback.src.app.route import route_bl
+
 
 app = Flask(__name__)
-CORS(app)
+CORS(app, supports_credentials=True)
 
+app.config['DEBUG'] = True
 
-#Route pour récupérer tous les utilisateurs
-@app.route('/users', methods=['GET'])
-def get_users():
-    return jsonify("les utilisateurs sont la ")
+app.register_blueprint(route_bl, url_prefix="/user")
 
+# app.config['JWT_SECRET_KEY'] = getenv('JWT_SECRET_KEY') TODO: remettre pour le docker
+app.config['JWT_SECRET_KEY'] = 'secret'
+app.config['JWT_TOKEN_LOCATION'] = ['cookies']
+app.config['JWT_COOKIE_CSRF_PROTECT'] = True
+app.config['JWT_COOKIE_SECURE'] = False 
+app.config['JWT_ACCESS_COOKIE_PATH'] = '/' # ça marche pas ['/user/secure', '/campagnes/secure']
+app.config['JWT_REFRESH_COOKIE_PATH'] = '/user/refresh'
+app.config['JWT_COOKIE_HTTPONLY'] = False  # Set cookies as HttpOnly
+app.config['CORS_SUPPORTS_CREDENTIALS'] = True
 
-@app.route('/', methods=['GET'])
-def message():
-    return jsonify("la route 5000 par défaut il marche")
+jwt = JWTManager(app)
 
-if __name__ == '__main__':
-    if DATABASE_URL:  
-       app.run(host="0.0.0.0", port=5000)
-    else:
-        print("Erreur : l'application ne peut pas démarrer sans configuration valide.")
+if __name__ == '__main__': 
+    app.run(host="0.0.0.0", port=5000)
