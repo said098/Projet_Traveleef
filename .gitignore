@@ -5,8 +5,12 @@
 /frontend/projettraveleef/.angular/
 /frontend/projettraveleef/.angular
 /frontend/projettraveleef/node_modules/
+/frontend/.idea
+/frontend/.vscode
+.vscode/
 
 
+/backend/projettraveleefback/.idea
 
 # Ignorer les fichiers Angular cache
 .angular/cache/
