@@ -151,34 +151,71 @@ def get_flight_emissions():
 
 
 def search_trips():
-    data = request.get_json()
-    if not data:
-        return jsonify({"error": "Données de requête manquantes"}), 400
+    try:
+        data = request.get_json()
 
-    required_fields = ["departure_id", "arrival_id", "outbound_date", "return_date", "currency", "hl"]
-    if not all(field in data for field in required_fields):
-        return jsonify({"error": f"Les champs suivants sont requis : {', '.join(required_fields)}"}), 400
+        # Paramètres obligatoires
+        departure_id = data.get('departure_id')
+        arrival_id = data.get('arrival_id')
+        outbound_date = data.get('outbound_date')
+        return_date = data.get('return_date')
+        currency = data.get('currency', 'USD')
+        hl = data.get('hl', 'en')
 
-    params = {
-        "engine": "google_flights",
-        "departure_id": data["departure_id"],    # ex : "CDG,ORY"
-        "arrival_id": data["arrival_id"],        # ex : "LAX"
-        "outbound_date": data["outbound_date"],  # format : "YYYY-MM-DD"
-        "return_date": data["return_date"],      # format : "YYYY-MM-DD"
-        "currency": data["currency"],            # ex : "USD"
-        "hl": data["hl"],                        # langue : "en"
-        "api_key": SERPAPI_API_KEY
-    }
+        if not all([departure_id, arrival_id, outbound_date]):
+            return jsonify({"error": "Les champs 'departure_id', 'arrival_id', et 'outbound_date' sont obligatoires."}), 400
 
-    # effectuer la recherche
-    search = GoogleSearch(params)
-    results = search.get_dict()
+        # Construction des paramètres pour SerpAPI
+        params = {
+            "engine": "google_flights",
+            "departure_id": departure_id,
+            "arrival_id": arrival_id,
+            "outbound_date": outbound_date,
+            "currency": currency,
+            "hl": hl,
+            "api_key": SERPAPI_API_KEY
+        }
 
-    # récupérer les vols
-    flights = results.get("other_flights", [])
+        if return_date:
+            params["return_date"] = return_date
 
+        # Ajout des filtres avancés
+        if "stops" in data:
+            params["stops"] = data["stops"]
+        if "include_airlines" in data and data["include_airlines"]:
+            params["include_airlines"] = ",".join(data["include_airlines"])
+        if "exclude_airlines" in data and data["exclude_airlines"]:
+            params["exclude_airlines"] = ",".join(data["exclude_airlines"])
+        if "bags" in data:
+            params["bags"] = int(data["bags"])
+        if "max_price" in data:
+            params["max_price"] = int(data["max_price"])
+        if "max_duration" in data:
+            params["max_duration"] = int(data["max_duration"])
+        if "outbound_times" in data:
+            params["outbound_times"] = data["outbound_times"]
+        if "return_times" in data:
+            params["return_times"] = data["return_times"]
+        if "emissions" in data:
+            params["emissions"] = data["emissions"]
+        if "layover_duration" in data:
+            params["layover_duration"] = data["layover_duration"]
+        if "exclude_conns" in data:
+            params["exclude_conns"] = data["exclude_conns"]
 
-    return jsonify({"flights": flights})
+        # Appel à l'API
+        search = GoogleSearch(params)
+        results = search.get_dict()
+
+        # Gestion des résultats
+        flights = results.get("other_flights", [])
+        if not flights:
+            return jsonify({"message": "Aucun vol ne correspond à vos recherches.", "flights": []}), 200
+
+        return jsonify({"flights": flights}), 200
+
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
 
 
 def infoUser():
