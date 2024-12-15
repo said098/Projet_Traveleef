@@ -1,18 +1,18 @@
+from os import getenv
+
 from flask import jsonify, Blueprint, make_response, request
 from flask_jwt_extended import jwt_required, get_jwt_identity, create_access_token, create_refresh_token, set_access_cookies, set_refresh_cookies, unset_jwt_cookies
 from src.utils.database import db
 from src.utils.mappers.utilisateur_mappeur import mappeur
 from bson.objectid import ObjectId
 import requests
-from flask import jsonify, request
 from datetime import datetime
 from bson.json_util import dumps
-from serpapi import GoogleSearch
 import base64
+from flask import request, jsonify
+from serpapi import GoogleSearch
 
 
-GOOGLE_API_KEY = "AIzaSyBvCjx9LwR0tFvB1Kl_9iZRe28WmN-KDQg" #ajouter la clé ici
-SERPAPI_API_KEY = "945cfb9cca45f989c0f533ed55dc04d49e33e5f12173a46e923dd5f49acf4523"
 
 
 controller_bl = Blueprint('controller_bl', __name__)
@@ -140,7 +140,7 @@ def get_flight_emissions():
     payload = {"flights": flights_data}
 
     # appeler l'API travel impact model
-    url = f"https://travelimpactmodel.googleapis.com/v1/flights:computeFlightEmissions?key={GOOGLE_API_KEY}"
+    url = f"https://travelimpactmodel.googleapis.com/v1/flights:computeFlightEmissions?key={getenv('GOOGLE_API_KEY')}"
     headers = {'Content-Type': 'application/json'}
     response = requests.post(url, json=payload, headers=headers)
 
@@ -150,12 +150,14 @@ def get_flight_emissions():
         return jsonify({"error": response.text}), response.status_code
 
 
+
 def search_trips():
     try:
-        # Récupération des données de la requête
+        # récupération des données de la requête
         data = request.get_json()
+        print("Filtres reçus :", data)
 
-        # Paramètres obligatoires
+        # paramètres obligatoires
         departure_id = data.get('departure_id')
         arrival_id = data.get('arrival_id')
         outbound_date = data.get('outbound_date')
@@ -166,7 +168,7 @@ def search_trips():
         if not all([departure_id, arrival_id, outbound_date]):
             return jsonify({"error": "Les champs 'departure_id', 'arrival_id', et 'outbound_date' sont obligatoires."}), 400
 
-        # Construction des paramètres pour SerpAPI
+        # construction des paramètres pour SerpAPI
         params = {
             "engine": "google_flights",
             "departure_id": departure_id,
@@ -174,13 +176,13 @@ def search_trips():
             "outbound_date": outbound_date,
             "currency": currency,
             "hl": hl,
-            "api_key": "945cfb9cca45f989c0f533ed55dc04d49e33e5f12173a46e923dd5f49acf4523"  # Remplacer avec ta clé
+            "api_key": getenv('SERPAPI_API_KEY')
         }
 
         if return_date:
             params["return_date"] = return_date
 
-        # Gestion de max_price
+        # gestion des filtres
         if "max_price" in data and data["max_price"]:
             try:
                 max_price = int(data["max_price"])
@@ -189,14 +191,27 @@ def search_trips():
                 params["max_price"] = max_price
             except ValueError:
                 return jsonify({"error": "Le prix maximum doit être un entier valide."}), 400
-        else:
-            params["max_price"] = None  # Ignorer max_price si vide ou non fourni
 
-        # Appel à l'API SerpAPI
+        if data.get("include_airlines"):
+            params["include_airlines"] = ",".join(data["include_airlines"])
+        elif data.get("exclude_airlines"):
+            params["exclude_airlines"] = ",".join(data["exclude_airlines"])
+
+        if data.get("stops") is not None:
+            try:
+                stops = int(data["stops"])
+                if stops not in [0, 1, 2, 3]:
+                    return jsonify({"error": "Le paramètre 'stops' doit être entre 0 et 3."}), 400
+                params["stops"] = stops
+            except ValueError:
+                return jsonify({"error": "Le paramètre 'stops' doit être un entier valide."}), 400
+
+        # appel à l'API SerpAPI
+        print("Paramètres envoyés à SerpAPI :", params)
         search = GoogleSearch(params)
         results = search.get_dict()
 
-        # Vérification des résultats
+        # extraction des résultats
         flights = results.get("other_flights", [])
         if not flights:
             return jsonify({"message": "Aucun vol ne correspond à vos recherches.", "flights": []}), 200
@@ -204,7 +219,9 @@ def search_trips():
         return jsonify({"flights": flights}), 200
 
     except Exception as e:
+        print("Erreur :", str(e))
         return jsonify({"error": str(e)}), 500
+
 
 def infoUser():
     user_id = get_jwt_identity()

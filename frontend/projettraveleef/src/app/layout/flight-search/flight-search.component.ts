@@ -38,34 +38,36 @@ export class FlightSearchComponent {
     });
   }
 
-  onSearch() {
-    const formData = this.searchForm.value;
+onSearch() {
+  const formData = this.searchForm.value;
 
-    const filters = {
-      departure_id: formData.departure_id,
-      arrival_id: formData.arrival_id,
-      outbound_date: formData.outbound_date,
-      return_date: formData.return_date,
-      currency: formData.currency,
-      hl: formData.hl,
-      stops: formData.stops,
-      include_airlines: formData.include_airlines ? formData.include_airlines.split(',') : null,
-      exclude_airlines: formData.exclude_airlines ? formData.exclude_airlines.split(',') : null,
-      max_price: formData.max_price || null,
-    };
+  const filters = {
+    departure_id: formData.departure_id,
+    arrival_id: formData.arrival_id,
+    outbound_date: formData.outbound_date,
+    return_date: formData.return_date,
+    currency: formData.currency,
+    hl: formData.hl,
+    stops: formData.stops,
+    include_airlines: formData.include_airlines ? formData.include_airlines.split(',') : null,
+    exclude_airlines: formData.exclude_airlines ? formData.exclude_airlines.split(',') : null,
+    max_price: formData.max_price || null,
+  };
 
+  console.log('Filtres envoyés :', filters);
 
-    this.flightsService.searchTrips(filters).subscribe(
-      (response: any) => {
-        this.itineraries = response.flights;
-        this.errorMessage = response.message || null;
-      },
-      (error) => {
-        this.errorMessage = 'Une erreur est survenue. Veuillez réessayer.';
-        this.itineraries = [];
-      }
-    );
-  }
+  this.flightsService.searchTrips(filters).subscribe(
+    (response: any) => {
+      console.log('Réponse reçue :', response);
+      this.itineraries = response.flights || [];
+      this.errorMessage = response.message || null;
+    },
+    (error) => {
+      this.errorMessage = 'Une erreur est survenue. Veuillez réessayer.';
+      console.error('Erreur API :', error);
+    }
+  );
+}
 
 openFlightDetails(flight: any) {
   console.log('Vol sélectionné:', flight);

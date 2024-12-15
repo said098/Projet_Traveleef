@@ -53,7 +53,6 @@ def recouperUserId():
 
 
 
-
 @route_bl.route('/infoPerso', methods=['GET'])
 @jwt_required()
 def infoUser():
