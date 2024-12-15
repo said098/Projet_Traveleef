@@ -16,3 +16,36 @@
   margin-top: 10px;
   padding-top: 10px;
 }
+
+form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+form .form-control {
+  width: 200px;
+  height: 40px;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+form .btn {
+  height: 40px;
+  font-size: 14px;
+  padding: 0 15px;
+}
+
+.error-message {
+  text-align: center;
+  color: red;
+  font-weight: bold;
+  margin-top: 20px;
+}
+
+.results {
+  margin-top: 20px;
+}
+
