@@ -13,6 +13,7 @@
   justify-content: space-around;
   max-width: 90%;
   margin: 20px auto;
+
 }
 
 .search input,
@@ -49,4 +50,8 @@
 .filters h2 {
   font-size: 1.5rem;
   color: #333;
+}
+.search-wrapper {
+  position: relative;
+  z-index: 0;
 }

@@ -1,0 +1,26 @@
+<div class="modal-backdrop" (click)="closeModal()"></div>
+<div class="modal-container">
+  <div class="modal-header">
+    <h4>Détails du vol</h4>
+    <button class="close-button" (click)="closeModal()">X</button>
+  </div>
+  <div class="modal-body">
+    <h5>{{ flight?.type }}</h5>
+    <p><strong>Prix : </strong>{{ flight?.price }} {{ currency }}</p>
+    <p><strong>Durée totale : </strong>{{ flight?.total_duration }} min</p>
+
+    <!-- Afficher les détails des segments de vol -->
+    <div *ngIf="flight?.flights && flight.flights.length > 0">
+      <div *ngFor="let segment of flight.flights">
+        <p><strong>Compagnie : </strong>{{ segment.airline }}</p>
+        <p><strong>Numéro de vol : </strong>{{ segment.flight_number }}</p>
+        <p><strong>Départ : </strong>{{ segment.departure_airport.name }} ({{ segment.departure_airport.id }}) à {{ segment.departure_airport.time | date: 'shortTime' }}</p>
+        <p><strong>Arrivée : </strong>{{ segment.arrival_airport.name }} ({{ segment.arrival_airport.id }}) à {{ segment.arrival_airport.time | date: 'shortTime' }}</p>
+        <p><strong>Durée : </strong>{{ segment.duration }} min</p>
+      </div>
+    </div>
+    <div *ngIf="!flight?.flights || flight.flights.length === 0">
+      <p>Aucun segment disponible pour ce vol.</p>
+    </div>
+  </div>
+</div>
