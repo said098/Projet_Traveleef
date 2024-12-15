@@ -1,55 +1,86 @@
 <div class="details-container" *ngIf="vol; else notFound">
- 
-  <div 
-    class="map-section" 
-    [style.backgroundImage]="'url(assets/images/map-placeholder.png)'"
-  >
+
+  <div class="map-section">
     <h2>{{ vol.trajet }}</h2>
-    <!-- <img 
-      *ngIf="vol.trajet" 
-      src="https://maps.googleapis.com/maps/api/staticmap?size=400x200&path=enc:{{ vol.mapPath }}&key=VOTRE_CLE_API" 
-      alt="Carte de vol" 
-      class="map-image" 
-    /> -->
+    <div class="map-container">
+
+    </div>
   </div>
 
-  
   <div class="details-section">
-    <h3>Détails du Vol</h3>
-    <p><strong>Compagnie :</strong> {{ vol.compagnie }}</p>
-    <p><strong>Date :</strong> {{ vol.date | date: 'dd/MM/yyyy' }}</p>
-    <p><strong>Heure :</strong> {{ vol.heure }}</p>
-    <p><strong>Terminal :</strong> {{ vol.terminal }}</p>
+    <h3>Détails du Transport</h3>
+    <div class="transport-info">
+      <p><strong>Compagnie :</strong> {{ vol.compagnie || 'Non spécifiée' }}</p>
+      <p><strong>Type de transport :</strong> {{ vol.type }}</p>
+      <p><strong>Date :</strong> {{ vol.date | date: 'dd/MM/yyyy' }}</p>
+    
+      <ng-container *ngIf="vol.type !== 'Multimodal'">
+        <p><strong>Heure :</strong> {{ vol.heure }}</p>
+      </ng-container>
+    
+      <ng-container *ngIf="vol.type === 'Vol'">
+        <p><strong>Terminal :</strong> {{ vol.terminal }}</p>
+      </ng-container>
+    
+      <ng-container *ngIf="vol.type === 'Train'">
+        <p><strong>Gare de départ :</strong> {{ vol.gare }}</p>
+      </ng-container>
+    
+      <ng-container *ngIf="vol.type === 'Bus'">
+        <p><strong>Gare routière :</strong> {{ vol.gare_routiere }}</p>
+      </ng-container>
+    
+      <ng-container *ngIf="vol.type === 'Multimodal'">
+        <h4>Étapes du Voyage</h4>
+        <div class="etapes-container">
+          <div *ngFor="let etape of vol.etapes" class="etape">
+            <div class="etape-header">
+              <p><strong>Mode de transport :</strong> {{ etape.mode }}</p>
+              <p><strong>Départ :</strong> {{ etape.depart }} <span class="arrow">→</span> <strong>Arrivée :</strong> {{ etape.arrivee }}</p>
+            </div>
+            <ng-container *ngIf="etape.heure_depart && etape.heure_arrivee">
+              <p><strong>Heure de départ :</strong> {{ etape.heure_depart }}</p>
+              <p><strong>Heure d'arrivée :</strong> {{ etape.heure_arrivee }}</p>
+            </ng-container>
+          </div>
+        </div>
+      </ng-container>
+    </div>
+    
+
+    <div class="details-image">
+      <img src="assets/images/green3.jpg" alt="Impact Environnemental" class="details-image__img" />
+      <div class="details-image__content">
+        <h2>Impact Environnemental des Modes de Transport</h2>
+        <p>Découvrez l'impact environnemental des différents modes de transport. Ce comparatif des émissions de CO2 vous encourage à opter pour des solutions de mobilité plus écologiques et durables. Choisissez des alternatives respectueuses de la planète pour vos trajets quotidiens.</p>
+      </div>
+    </div>
+    
+    <div class="carbon-info">
+      <div class="carbon-icon">
+        <img src="assets/images/LogoTraveleefgreen.png" alt="Icône empreinte carbone" />
+      </div>
+      <div class="carbon-text">
+        <h4>L'impact environnemental de votre voyage</h4>
+        <p>
+          Chaque vol contribue à l'<span>empreinte carbone</span>, un indicateur clé mesurant les émissions de <span>gaz à effet de serre</span> libérées dans l'atmosphère. Saviez-vous que les transports aériens représentent environ <span>2,5% des émissions mondiales de CO2</span> ? 
+          <br />
+          Réduire cette empreinte est essentiel pour lutter contre le <span>réchauffement climatique</span>. Optez pour des solutions comme la <span>compensation carbone</span> ou voyagez plus léger pour limiter l'impact de vos déplacements. Ensemble, nous pouvons préserver notre planète.
+        </p>
+      </div>
+    </div>
+
+    <div class="back-container">
+      <button class="back-button" (click)="goBack()">Retour à la liste</button>
+    </div>
   </div>
 </div>
-
-
-<div class="carbon-info">
-  <div class="carbon-icon">
-    <img src="assets/images/LogoTraveleefgreen.png" alt="Icône empreinte carbone" />
-  </div>
-  <div class="carbon-text">
-    <h4>L'impact environnemental de votre voyage</h4>
-    <p>
-      Chaque vol contribue à l'<span>empreinte carbone</span>, un indicateur clé mesurant les émissions de <span>gaz à effet de serre</span> libérées dans l'atmosphère. Saviez-vous que les transports aériens représentent environ <span>2,5% des émissions mondiales de CO2</span> ? 
-      <br />
-      Réduire cette empreinte est essentiel pour lutter contre le <span>réchauffement climatique</span>. Optez pour des solutions comme la <span>compensation carbone</span> ou voyagez plus léger pour limiter l'impact de vos déplacements. Ensemble, nous pouvons préserver notre planète.
-    </p>
-  </div>
-</div>
-
-
-
-<div class="back-container">
-  <button class="back-button" (click)="goBack()">Retour</button>
-</div>
-
 
 <ng-template #notFound>
   <div class="details-container">
     <div class="details-section">
-      <h3>Vol non trouvé</h3>
-      <p>Le vol demandé n'existe pas ou a été supprimé.</p>
+      <h3>Transport non trouvé</h3>
+      <p>Le transport demandé n'existe pas ou a été supprimé.</p>
       <div class="back-container">
         <button class="back-button" (click)="goBack()">Retour à la liste</button>
       </div>

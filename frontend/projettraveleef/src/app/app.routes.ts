@@ -12,11 +12,11 @@ export const routes: Routes = [
   { path: '', component: PageAccueilComponent},
   { path: 'proprodetraveleff', component: PageProppsComponent},
   { path: 'voyage', component: VoyageComponent },
-  { path: 'vol/:id', component: VolDetailsComponent },
+  { path: 'trajet/:id', component: VolDetailsComponent },
   { path: 'auth', component: AuthPageComponent },
   { path: 'infoPers/:id', component: UserInfoComponent},
   { path: 'infoPers/edit/:id', component: ModifierUserInfoComponent },
-
+  
 ];
 
 

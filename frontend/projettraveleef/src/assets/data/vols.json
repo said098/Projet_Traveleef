@@ -1,35 +1,174 @@
 [
-    {
-      "id": 0,
-      "compagnie": "Air France",
-      "trajet": "Paris - Londres",
-      "date": "2024-12-15",
-      "heure": "08:30",
-      "terminal": "T2"
-    },
-    {
-      "id": 1,
-      "compagnie": "British Airways",
-      "trajet": "Paris - New York",
-      "date": "2024-12-20",
-      "heure": "14:15",
-      "terminal": "T1"
-    },
-    {
-      "id": 2,
-      "compagnie": "Lufthansa",
-      "trajet": "Berlin - Paris",
-      "date": "2024-12-25",
-      "heure": "10:00",
-      "terminal": "T3"
-    },
-    {
-      "id": 3,
-      "compagnie": "Norwegian Air",
-      "trajet": "Oslo - Paris",
-      "date": "2024-12-30",
-      "heure": "18:45",
-      "terminal": "T4"
-    }
-  ]
+  {
+    "id": 0,
+    "type": "Vol",
+    "compagnie": "Air France",
+    "trajet": "Paris - Londres",
+    "date": "2024-12-15",
+    "heure": "08:30",
+    "terminal": "T2",
+    "latitude": 48.8566,
+    "longitude": 2.3522,
+    "latitude_arrivee": 51.5074,  
+    "longitude_arrivee": -0.1278
+  },
+
+  {
+    "id": 1,
+    "type": "Vol",
+    "compagnie": "British Airways",
+    "trajet": "Paris - New York",
+    "date": "2024-12-20",
+    "heure": "14:15",
+    "terminal": "T1",
+    "latitude": 48.8566,
+    "longitude": 2.3522,
+    "latitude_arrivee": 40.7128,  
+    "longitude_arrivee": -74.0060
+  },
+
+  {
+    "id": 2,
+    "type": "Train",
+    "compagnie": "Eurostar",
+    "trajet": "Paris - Londres",
+    "date": "2024-12-16",
+    "heure": "09:45",
+    "gare": "Gare du Nord",
+    "latitude": 48.8808,
+    "longitude": 2.3554,
+    "latitude_arrivee": 51.5074, 
+    "longitude_arrivee": -0.1278
+  },
+
+  {
+    "id": 3,
+    "type": "Bus",
+    "compagnie": "FlixBus",
+    "trajet": "Berlin - Paris",
+    "date": "2024-12-25",
+    "heure": "18:00",
+    "gare_routiere": "Berlin ZOB",
+    "latitude": 52.5309,
+    "longitude": 13.2695,
+    "latitude_arrivee": 48.8566,  
+    "longitude_arrivee": 2.3522
+  },
+
+  {
+    "id": 4,
+    "type": "Vol",
+    "compagnie": "Norwegian Air",
+    "trajet": "Oslo - Paris",
+    "date": "2024-12-30",
+    "heure": "18:45",
+    "terminal": "T4",
+    "latitude": 59.9139,
+    "longitude": 10.7522,
+    "latitude_arrivee": 48.8566, 
+    "longitude_arrivee": 2.3522
+  },
+
+  {
+    "id": 5,
+    "type": "Train",
+    "compagnie": "TGV",
+    "trajet": "Marseille - Paris",
+    "date": "2024-12-28",
+    "heure": "12:30",
+    "gare": "Gare de Lyon",
+    "latitude": 43.2965,
+    "longitude": 5.3698,
+    "latitude_arrivee": 48.8566,  
+    "longitude_arrivee": 2.3522
+  },
+
+  {
+    "id": 6,
+    "type": "Bus",
+    "compagnie": "BlaBlaBus",
+    "trajet": "Amsterdam - Paris",
+    "date": "2024-12-27",
+    "heure": "07:30",
+    "gare_routiere": "Amsterdam Sloterdijk",
+    "latitude": 52.3881,
+    "longitude": 4.8386,
+    "latitude_arrivee": 48.8566,  
+    "longitude_arrivee": 2.3522
+  },
+
+  {
+    "id": 7,
+    "type": "Multimodal",
+    "trajet": "Paris - Londres",
+    "date": "2024-12-15",
+    "latitude": 48.8791,
+    "longitude": 2.3553,
+    "latitude_arrivee": 51.5074,
+    "longitude_arrivee": -0.1278,
+    "etapes": [
+      {
+        "mode": "Train",
+        "compagnie": "Eurostar",
+        "depart": "Gare du Nord",
+        "arrivee": "London St Pancras",
+        "heure_depart": "08:00",
+        "heure_arrivee": "09:30",
+        "latitude": 48.8791,
+        "longitude": 2.3553,
+        "latitude_arrivee": 51.5074,
+        "longitude_arrivee": -0.1278
+      },
+      {
+        "mode": "Bus",
+        "compagnie": "National Express",
+        "depart": "London St Pancras",
+        "arrivee": "Heathrow Airport",
+        "heure_depart": "10:00",
+        "heure_arrivee": "11:00",
+        "latitude": 51.4700,
+        "longitude": -0.4543,
+        "latitude_arrivee": 51.4700,
+        "longitude_arrivee": -0.4543
+      }
+    ]
+  },
   
+  {
+    "id": 8,
+    "type": "Multimodal",
+    "trajet": "Berlin - Paris",
+    "date": "2024-12-25",
+    "latitude": 52.5309, 
+    "longitude": 13.3832, 
+    "latitude_arrivee": 48.8566,
+    "longitude_arrivee": 2.3522,
+    "etapes": [
+      {
+        "mode": "Bus",
+        "compagnie": "FlixBus",
+        "depart": "Berlin ZOB",
+        "arrivee": "Hamburg Hbf",
+        "heure_depart": "06:00",
+        "heure_arrivee": "09:00",
+        "latitude": 52.5309,
+        "longitude": 13.3832,
+        "latitude_arrivee": 53.5511, 
+        "longitude_arrivee": 9.9937
+      },
+      {
+        "mode": "Train",
+        "compagnie": "Deutsche Bahn",
+        "depart": "Hamburg Hbf",
+        "arrivee": "Paris Gare de l'Est",
+        "heure_depart": "10:00",
+        "heure_arrivee": "16:00",
+        "latitude": 53.5511,
+        "longitude": 9.9937,
+        "latitude_arrivee": 48.8566,  
+        "longitude_arrivee": 2.3522
+      }
+    ]
+  }
+  
+]
