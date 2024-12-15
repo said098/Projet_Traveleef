@@ -46,20 +46,21 @@ onSearch() {
     stops: formData.stops,
     include_airlines: formData.include_airlines ? formData.include_airlines.split(',') : null,
     exclude_airlines: formData.exclude_airlines ? formData.exclude_airlines.split(',') : null,
-    max_price: formData.max_price || null,
+    max_price: formData.max_price ? +formData.max_price : null // Convertir uniquement si une valeur existe
   };
 
   this.flightsService.searchTrips(filters).subscribe(
     (response: any) => {
       this.itineraries = response.flights;
-      this.errorMessage = this.itineraries.length === 0 ? 'Aucun vol ne correspond à vos recherches.' : null;
+      this.errorMessage = response.message || null;
     },
     (error) => {
-      this.errorMessage = 'Une erreur est survenue.';
+      this.errorMessage = 'Une erreur est survenue. Veuillez réessayer.';
       this.itineraries = [];
     }
   );
 }
+
 
 
 }

@@ -152,6 +152,7 @@ def get_flight_emissions():
 
 def search_trips():
     try:
+        # Récupération des données de la requête
         data = request.get_json()
 
         # Paramètres obligatoires
@@ -173,41 +174,29 @@ def search_trips():
             "outbound_date": outbound_date,
             "currency": currency,
             "hl": hl,
-            "api_key": SERPAPI_API_KEY
+            "api_key": "945cfb9cca45f989c0f533ed55dc04d49e33e5f12173a46e923dd5f49acf4523"  # Remplacer avec ta clé
         }
 
         if return_date:
             params["return_date"] = return_date
 
-        # Ajout des filtres avancés
-        if "stops" in data:
-            params["stops"] = data["stops"]
-        if "include_airlines" in data and data["include_airlines"]:
-            params["include_airlines"] = ",".join(data["include_airlines"])
-        if "exclude_airlines" in data and data["exclude_airlines"]:
-            params["exclude_airlines"] = ",".join(data["exclude_airlines"])
-        if "bags" in data:
-            params["bags"] = int(data["bags"])
-        if "max_price" in data:
-            params["max_price"] = int(data["max_price"])
-        if "max_duration" in data:
-            params["max_duration"] = int(data["max_duration"])
-        if "outbound_times" in data:
-            params["outbound_times"] = data["outbound_times"]
-        if "return_times" in data:
-            params["return_times"] = data["return_times"]
-        if "emissions" in data:
-            params["emissions"] = data["emissions"]
-        if "layover_duration" in data:
-            params["layover_duration"] = data["layover_duration"]
-        if "exclude_conns" in data:
-            params["exclude_conns"] = data["exclude_conns"]
+        # Gestion de max_price
+        if "max_price" in data and data["max_price"]:
+            try:
+                max_price = int(data["max_price"])
+                if max_price < 0:
+                    return jsonify({"error": "Le prix maximum doit être positif."}), 400
+                params["max_price"] = max_price
+            except ValueError:
+                return jsonify({"error": "Le prix maximum doit être un entier valide."}), 400
+        else:
+            params["max_price"] = None  # Ignorer max_price si vide ou non fourni
 
-        # Appel à l'API
+        # Appel à l'API SerpAPI
         search = GoogleSearch(params)
         results = search.get_dict()
 
-        # Gestion des résultats
+        # Vérification des résultats
         flights = results.get("other_flights", [])
         if not flights:
             return jsonify({"message": "Aucun vol ne correspond à vos recherches.", "flights": []}), 200
@@ -216,7 +205,6 @@ def search_trips():
 
     except Exception as e:
         return jsonify({"error": str(e)}), 500
-
 
 def infoUser():
     user_id = get_jwt_identity()
