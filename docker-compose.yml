@@ -13,6 +13,9 @@ services:
     environment:
       - MONGO_URI=${MONGO_URI}
       - MONGO_DB=${MONGO_DB}
+      - GOOGLE_API_KEY=${GOOGLE_API_KEY}
+      - SERPAPI_API_KEY=${SERPAPI_API_KEY}
+      - secret=${secret}
     networks:
       - frontend_backend_net
     ports:
