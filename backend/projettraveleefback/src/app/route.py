@@ -2,6 +2,7 @@ from flask import Blueprint, jsonify
 import src.app.controller as controller
 from flask_jwt_extended import jwt_required, get_jwt_identity
 from bson import ObjectId
+from os import getenv
 
 from .controller import (
     ping_pong,
@@ -43,6 +44,7 @@ def flight_emissions():
 
 @route_bl.post('/search_trips')
 def search_for_trips():
+    print("env ",getenv('GOOGLE_API_KEY'))
     return search_trips()
 
 @route_bl.get('/route')
